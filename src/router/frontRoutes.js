@@ -4,6 +4,7 @@ const frontRoutes = {
 		profile: '/profile',
 		registration: '/registration',
 		login: '/login',
+		about: '/about',
 		project: {
 			base: `/project/:id`,
 			note: 'note/:id',
@@ -18,6 +19,7 @@ const frontRoutes = {
 		profile: '/profile',
 		registration: '/registration',
 		login: '/login',
+		about: '/about',
 		project: {
 			base: id => `/project/${id}`,
 			note: (idProject, idNote) => `/project/${idProject}/note/${idNote}`,

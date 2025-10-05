@@ -1,0 +1,60 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+@use "@styles/includes/extends.scss" as *;
+
+.search {
+	position: relative;
+	&-button {
+		position: absolute;
+		top: 50%;
+		width: toRem(18);
+		height: toRem(18);
+		left: toRem(15);
+		line-height: 0;
+		object-fit: contain;
+		transform: translate(0, -50%);
+		will-change: transform;
+		transition: transform 0.3s;
+		img {
+			@extend %ibg;
+			object-fit: contain;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				transform: translate(0, -50%) scale(1.1);
+			}
+		}
+	}
+	&-input {
+		border-radius: toRem(200);
+		background-color: #f4f7fc;
+		height: toRem(40);
+		padding-inline: toRem(45) toRem(25);
+		font-size: toRem(16);
+		letter-spacing: toRem(0.3);
+		font-weight: 500;
+		color: #000;
+		outline: toRem(2) solid transparent;
+		transition: outline-color 0.3s;
+		&::placeholder {
+			transition: opacity 0.3s;
+			color: #848484;
+		}
+		&:focus {
+			outline-color: $accentColor;
+			&::placeholder {
+				opacity: 0;
+			}
+		}
+		&::-webkit-search-decoration,
+		&::-webkit-search-cancel-button,
+		&::-webkit-search-results-button,
+		&::-webkit-search-results-decoration {
+			display: none;
+		}
+		&::-ms-clear,
+		&::-ms-reveal {
+			display: none;
+		}
+	}
+}

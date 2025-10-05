@@ -13,6 +13,7 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			'@': '/src', // Відносний шлях до src
+			'@styles': '/src/styles',
 		},
 	},
 })

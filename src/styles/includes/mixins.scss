@@ -1,5 +1,5 @@
 @use "sass:math";
-@use "@styles/settings.scss";
+@use "../settings.scss";
 
 //Percent
 @function percent($px, $from: 100) {
@@ -52,7 +52,14 @@
 }
 
 // Адаптивна властивість (clamp)
-@mixin adaptiveValue($property, $startSize, $minSize: settings.$minSize, $keepSize: 0, $widthFrom: settings.$containerWidth, $widthTo: settings.$minWidth) {
+@mixin adaptiveValue(
+	$property,
+	$startSize,
+	$minSize: settings.$minSize,
+	$keepSize: 0,
+	$widthFrom: settings.$containerWidth,
+	$widthTo: settings.$minWidth
+) {
 	@if ($startSize==0) {
 		$startSize: 0.000001;
 	}
@@ -102,7 +109,12 @@
 }
 
 // Grid-контейнер
-@mixin gridContainer($type: 0, $container: settings.$maxWidthContainer, $paddingStart: math.div(settings.$containerPadding, 2), $paddingEnd: math.div(settings.$containerPadding, 2)) {
+@mixin gridContainer(
+	$type: 0,
+	$container: settings.$maxWidthContainer,
+	$paddingStart: math.div(settings.$containerPadding, 2),
+	$paddingEnd: math.div(settings.$containerPadding, 2)
+) {
 	display: grid;
 	min-width: 0;
 	grid-template-columns: #{$paddingStart}px 1fr minmax(auto, #{$container}px) 1fr #{$paddingEnd}px;

@@ -1,0 +1,80 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.header {
+	border-radius: 0 0 toRem(8) toRem(8);
+	box-shadow: 0 toRem(30) toRem(60) 0 rgba(32, 56, 85, 0.15);
+	background-color: #ffffff;
+	&-container {
+		min-height: var(--header-height);
+		padding-block: toRem(10);
+		display: flex;
+		align-items: center;
+		column-gap: toRem(44);
+	}
+	&-actions {
+		display: flex;
+		column-gap: toRem(20);
+		flex-shrink: 0;
+	}
+	&-link {
+		font-size: toRem(16);
+		font-weight: 500;
+		line-height: 1.2;
+		letter-spacing: toRem(0.3);
+		transition: color 0.3s;
+		color: #848484;
+		&.active {
+			color: $accentColor;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				color: $accentColor;
+			}
+		}
+	}
+	&-search {
+		flex-basis: toRem(600);
+	}
+	&-menu {
+		flex-shrink: 0;
+		flex-grow: 1;
+	}
+}
+
+.menu {
+	&-body {
+	}
+	&-icon {
+	}
+	&-list {
+		display: flex;
+		justify-content: flex-end;
+		flex-wrap: wrap;
+		column-gap: toRem(35);
+		row-gap: toRem(7);
+	}
+
+	&-item {
+	}
+	&-link {
+		font-size: toRem(16);
+		line-height: 1.2;
+		letter-spacing: toRem(0.3);
+		transition: color 0.3s;
+		font-weight: 500;
+		color: #848484;
+		&.active {
+			color: $accentColor;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				color: $accentColor;
+			}
+		}
+	}
+}
+
+.icon-menu {
+	display: none;
+}
