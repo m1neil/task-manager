@@ -14,6 +14,7 @@ export default defineConfig({
 		alias: {
 			'@': '/src', // Відносний шлях до src
 			'@styles': '/src/styles',
+			'@img': '/src/assets',
 		},
 	},
 })

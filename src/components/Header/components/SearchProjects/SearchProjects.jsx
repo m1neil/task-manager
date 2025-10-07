@@ -1,10 +1,15 @@
 import iconSearch from '@/assets/icons/search.svg'
 import styles from './searchProjects.module.scss'
+import { useState } from 'react'
 
 function SearchProjects({ suffix }) {
+	const [search, setSearch] = useState('')
+
 	return (
 		<form className={`${suffix} ${styles['search']}`}>
 			<input
+				value={search}
+				onChange={e => setSearch(e.target.value)}
 				type="search"
 				name="search-project"
 				placeholder="Пошук"

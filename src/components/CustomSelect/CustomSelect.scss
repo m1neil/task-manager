@@ -1,0 +1,93 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.select {
+	&-wrapper {
+		display: inline-block;
+		position: relative;
+	}
+	&-button {
+		border: toRem(1) solid rgba(18, 18, 18, 1);
+		border-radius: toRem(8);
+		background: rgba(220, 224, 255, 1);
+		color: rgba(18, 18, 18, 1);
+		letter-spacing: toRem(0.3);
+		min-height: toRem(45);
+		padding: toRem(8) toRem(13);
+		font-size: toRem(18);
+		min-width: toRem(220);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		column-gap: toRem(10);
+		transition:
+			background-color 0.3s,
+			color 0.3s;
+		&::after {
+			content: "";
+			background: url("@img/icons/arrow.svg") center / contain no-repeat;
+			flex-shrink: 0;
+			width: toRem(12);
+			aspect-ratio: 1;
+			transform: rotate(180deg);
+			transition: transform 0.3s;
+		}
+		.--open & {
+			&::after {
+				content: "";
+				transform: rotate(0);
+			}
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: $accentColor;
+				color: #fff;
+			}
+		}
+	}
+	&-options {
+		position: absolute;
+		width: 100%;
+		top: calc(100% + toRem(5));
+		left: 0;
+		max-height: toRem(220);
+		overflow-y: auto;
+		scrollbar-width: thin;
+		padding-block: toRem(13);
+		background-color: #dce0ff;
+		border-radius: toRem(8) toRem(8);
+		border: toRem(1) solid rgba(18, 18, 18, 1);
+		opacity: 0;
+		visibility: hidden;
+		transform: translate(0, toRem(10));
+		transition: all 0.3s;
+		.--open & {
+			opacity: 1;
+			visibility: visible;
+			transform: translate(0, 0);
+		}
+	}
+	&-value {
+		width: 100%;
+		color: rgba(18, 18, 18, 1);
+		font-size: 16px;
+		line-height: 1.2;
+		letter-spacing: toRem(0.3);
+		text-align: left;
+		color: rgba(18, 18, 18, 1);
+		padding: toRem(8) toRem(13);
+		transition: background-color 0.3s;
+		&:not(:first-child) {
+			border-top: 1px solid rgba(187, 194, 255, 1);
+		}
+		&.--checked {
+			background-color: $accentColor;
+			color: #fff;
+		}
+		@media (any-hover: hover) {
+			&:hover:not(.--checked) {
+				background-color: #bbbfda;
+			}
+		}
+	}
+}
