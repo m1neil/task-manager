@@ -1,0 +1,12 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.title {
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: 0.01rem;
+	color: #121212;
+}
+.title-big {
+	@include adaptiveValue("font-size", 40, 25, 0, $containerPadding, 570);
+}

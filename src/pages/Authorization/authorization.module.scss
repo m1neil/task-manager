@@ -1,0 +1,103 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.authorization {
+}
+.authorization-container {
+	padding-block: 90px;
+	position: relative;
+	min-height: calc(100svh - var(--header-height));
+	&::after {
+		content: "";
+		position: absolute;
+		width: 100vw;
+		height: percent(809, 1024);
+		max-height: toRem(737);
+		top: 0;
+		left: calc(100% + toRem(41));
+		background-color: #dadefe;
+		z-index: -1;
+	}
+}
+.authorization-title {
+	margin-bottom: toEm(15, 40);
+}
+
+.authorization-text {
+	// font-size: toRem(18);
+	line-height: 1.5;
+	letter-spacing: 0.01rem;
+	color: #121212;
+	margin-bottom: toRem(26);
+	a {
+		font-weight: 600;
+		position: relative;
+		&::after {
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: toRem(2);
+			bottom: toRem(3);
+			left: 0;
+			border-radius: toRem(5);
+			background-color: #121212;
+			transition: width 0.3s;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				&::after {
+					content: "";
+					width: 0;
+				}
+			}
+		}
+	}
+}
+
+.authorization-decor {
+	position: absolute;
+	max-width: percent(600, 1280);
+	max-height: percent(809, 1024);
+	top: 0;
+	right: toRem(-42);
+	z-index: -1;
+}
+
+.authorization-circle {
+	position: absolute;
+	height: percent(561, 1024);
+	aspect-ratio: 1;
+	bottom: toRem(-80);
+	right: toRem(61);
+	@include adaptiveValue("max-height", 561, 300, 0, $containerWidth, 575);
+	span {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-color: #dce0ff;
+		border-radius: 50%;
+	}
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		aspect-ratio: 1;
+		border-radius: 50%;
+	}
+	&::before {
+		width: percent(443, 561);
+		background-color: #ccd1ff;
+		z-index: 1;
+	}
+
+	&::after {
+		width: percent(340, 561);
+		background-color: #bbc2ff;
+		z-index: 2;
+	}
+}

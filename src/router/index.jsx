@@ -4,8 +4,6 @@ import ErrorPage from '@/pages/ErrorPage/ErrorPage'
 import Page404 from '@/pages/Page404/Page404'
 import frontRoutes from './frontRoutes'
 import Home from '@/pages/Home/Home'
-import Login from '@/pages/Login/Login'
-import Registration from '@/pages/Registration/Registration'
 import Project from '@/pages/Project/Project'
 import Note from '@/pages/Note/Note'
 import Task from '@/pages/Task/Task'
@@ -13,6 +11,7 @@ import NoteForm from '@/pages/NoteForm/NoteForm'
 import TaskForm from '@/pages/TaskForm/TaskForm'
 import Profile from '@/pages/Profile/Profile'
 import About from '@/pages/About/About'
+import Authorization from '@/pages/Authorization/Authorization'
 
 export const routes = [
 	{
@@ -41,11 +40,11 @@ export const routes = [
 	},
 	{
 		path: frontRoutes.pages.login,
-		Component: Login,
+		Component: Authorization,
 	},
 	{
 		path: frontRoutes.pages.registration,
-		Component: Registration,
+		Component: Authorization,
 	},
 	{
 		path: frontRoutes.pages.project.base,

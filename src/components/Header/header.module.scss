@@ -2,6 +2,10 @@
 @use "@styles/settings.scss" as *;
 
 .header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 50;
 	border-radius: 0 0 toRem(8) toRem(8);
 	box-shadow: 0 toRem(30) toRem(60) 0 rgba(32, 56, 85, 0.15);
 	background-color: #ffffff;
