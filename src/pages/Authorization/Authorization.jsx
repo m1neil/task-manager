@@ -73,19 +73,21 @@ function Authorization() {
 	return (
 		<section className={styles['authorization']}>
 			<div className={styles['authorization-container']}>
-				<h1 className={`${styles['authorization-title']} title title-big`}>
-					{contentPage.title}
-				</h1>
-				<div className={styles['authorization-text']}>
-					{contentPage.text}{' '}
-					<Link to={contentPage.link.url}>{contentPage.link.text}</Link>
+				<div className={styles['authorization-content']}>
+					<h1 className={`${styles['authorization-title']} title title-big`}>
+						{contentPage.title}
+					</h1>
+					<div className={styles['authorization-text']}>
+						{contentPage.text}{' '}
+						<Link to={contentPage.link.url}>{contentPage.link.text}</Link>
+					</div>
+					<form action="#">
+						{Object.entries(userData).map(createField)}
+						<button className="form-button button" type="submit">
+							{contentPage.button}
+						</button>
+					</form>
 				</div>
-				<form action="#">
-					{Object.entries(userData).map(createField)}
-					<button className="form-button button" type="submit">
-						{contentPage.button}
-					</button>
-				</form>
 				<img
 					className={styles['authorization-decor']}
 					src={decor}

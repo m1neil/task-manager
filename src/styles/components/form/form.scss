@@ -1,0 +1,31 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+@forward "select";
+@forward "input";
+
+.form {
+}
+.form-line {
+	&:not(:last-child) {
+		&:not(:last-child) {
+			margin-bottom: toRem(20);
+		}
+	}
+}
+.form-label {
+	font-weight: 400;
+	font-size: toRem(19);
+	line-height: 1.2;
+	letter-spacing: 0.02rem;
+	color: #535353;
+	margin-bottom: toRem(16);
+}
+.form-password {
+}
+.form-show-pass {
+}
+.form-input {
+}
+.form-select {
+}

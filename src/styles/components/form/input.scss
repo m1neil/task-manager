@@ -1,0 +1,10 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.input {
+	height: toRem(45);
+	border: toRem(1) solid #121212;
+	border-radius: toRem(8);
+	padding-inline: toRem(15);
+	background-color: #fff;
+}

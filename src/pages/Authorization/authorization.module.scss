@@ -4,7 +4,7 @@
 .authorization {
 }
 .authorization-container {
-	padding-block: 90px;
+	padding-block: toRem(90) toRem(40);
 	position: relative;
 	min-height: calc(100svh - var(--header-height));
 	&::after {
@@ -22,7 +22,9 @@
 .authorization-title {
 	margin-bottom: toEm(15, 40);
 }
-
+.authorization-content {
+	max-width: toRem(500);
+}
 .authorization-text {
 	// font-size: toRem(18);
 	line-height: 1.5;
@@ -69,6 +71,7 @@
 	aspect-ratio: 1;
 	bottom: toRem(-80);
 	right: toRem(61);
+	z-index: -1;
 	@include adaptiveValue("max-height", 561, 300, 0, $containerWidth, 575);
 	span {
 		position: absolute;
