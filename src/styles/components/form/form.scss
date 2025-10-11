@@ -9,9 +9,7 @@
 }
 .form-line {
 	&:not(:last-child) {
-		&:not(:last-child) {
-			margin-bottom: toRem(20);
-		}
+		margin-bottom: toRem(20);
 	}
 }
 .form-label {

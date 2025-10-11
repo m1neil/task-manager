@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router'
 import textPage from './options'
 import { formData } from './options'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './authorization.module.scss'
 import decor from '@img/authorization/decor.svg'
 import InputPassword from '@/components/InputPassword'
@@ -10,6 +10,8 @@ function Authorization() {
 	const namePage = useLocation().pathname.replace('/', '')
 	const [userData, setUserData] = useState(() => formData[namePage])
 	const contentPage = textPage[namePage]
+
+	console.log(formData[namePage])
 
 	const changeUserDate = ({ target }) => {
 		const { name, value } = target
@@ -20,6 +22,10 @@ function Authorization() {
 			return { ...prevData, [name]: newField }
 		})
 	}
+
+	useEffect(() => {
+		setUserData(formData[namePage])
+	}, [namePage])
 
 	const createField = (item, index) => {
 		const [key, data] = item
