@@ -8,7 +8,7 @@ const BASE_URL = 'http://localhost:8080/'
 
 export const apiManager = createApi({
 	reducerPath: 'apiManager',
-	baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+	baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
 	endpoints: builder => ({
 		getAllSpecialization: builder.query({
 			query: () => apiRoutes.specialization.getAll,
@@ -24,7 +24,7 @@ export const apiManager = createApi({
 			query: data => ({
 				url: apiRoutes.user.login,
 				method: 'POST',
-				data: data,
+				body: data,
 			}),
 		}),
 	}),

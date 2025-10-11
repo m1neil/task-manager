@@ -34,7 +34,6 @@ function Authorization() {
 
 	const changeUserDate = ({ target }) => {
 		const { name, value } = target
-		console.log(value)
 
 		setUserData(prevData => {
 			const prevField = prevData[name]
@@ -47,7 +46,7 @@ function Authorization() {
 	}
 
 	// console.log(userData)
-	console.log(namePage)
+	// console.log(namePage)
 	useEffect(() => {
 		setUserData(formData[namePage])
 	}, [namePage])
@@ -119,25 +118,11 @@ function Authorization() {
 		const dataForSend = transformUserDate(newUserData)
 		try {
 			if (namePage === 'registration') {
-				await registrationUser(dataForSend)
+				await registrationUser(dataForSend).unwrap()
 				navigator(frontRoutes.navigation.login)
 			} else {
 				console.log(dataForSend)
-				// await loginUser(dataForSend)
-				const response = await fetch(
-					`http://localhost:8080/${apiRoutes.user.login}`,
-					{
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-						body: JSON.stringify(dataForSend),
-						credentials: 'include',
-					}
-				)
-
-				if (!response.ok) throw new Error("Couldn't get a cookie!")
-				document.cookie = await response.text()
+				await loginUser(dataForSend).unwrap()
 			}
 		} catch (error) {
 			setErrorSubmit(error.message)
