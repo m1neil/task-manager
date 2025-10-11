@@ -1,0 +1,22 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.button {
+	font-weight: 600;
+	font-size: toRem(16);
+	line-height: 2;
+	letter-spacing: 0.03rem;
+	text-align: center;
+	color: #fff;
+	background-color: $accentColor;
+	border-radius: toRem(8);
+	min-width: toRem(168);
+	min-height: toRem(40);
+	padding: toRem(10) toRem(16);
+	transition: background-color 0.3s;
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: $accentColorHover;
+		}
+	}
+}

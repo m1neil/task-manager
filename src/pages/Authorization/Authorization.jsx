@@ -2,37 +2,32 @@ import { Link, useLocation } from 'react-router'
 import textPage from './options'
 import { formData } from './options'
 import { useState } from 'react'
-import iconShowPass from '@/assets/icons/show-pass.png'
-import iconClosePass from '@/assets/icons/close-pass.png'
 import styles from './authorization.module.scss'
 import decor from '@img/authorization/decor.svg'
+import InputPassword from '@/components/InputPassword'
 
 function Authorization() {
 	const namePage = useLocation().pathname.replace('/', '')
 	const [userData, setUserData] = useState(() => formData[namePage])
 	const contentPage = textPage[namePage]
 
-	const changeUserDate = () => {}
+	const changeUserDate = ({ target }) => {
+		const { name, value } = target
+
+		setUserData(prevData => {
+			const prevField = prevData[name]
+			const newField = { ...prevField, value }
+			return { ...prevData, [name]: newField }
+		})
+	}
 
 	const createField = (item, index) => {
 		const [key, data] = item
 		let field
 		switch (key) {
-			case 'password':
+			case 'user-password':
 			case 'repeat-password':
-				field = (
-					<div className="form-password">
-						<button className="form-show-pass">
-							<img src={iconShowPass} alt="icon open password" />
-							<img src={iconClosePass} alt="icon close password" />
-						</button>
-						<input
-							className="form-input input"
-							onChange={changeUserDate}
-							{...data}
-						/>
-					</div>
-				)
+				field = <InputPassword onChange={changeUserDate} {...data} />
 				break
 			case 'user-role':
 				field = (
@@ -41,11 +36,24 @@ function Authorization() {
 						onChange={changeUserDate}
 						{...data}
 					>
-						<option value="Проджект менеджер">Проджект менеджер</option>
-						<option value="Піар менеджер">Піар менеджер</option>
-						<option value="Розробник">Розробник</option>
-						<option value="Тестувальник">Тестувальник</option>
-						<option value="Керівник відділу">Керівник відділу</option>
+						<option className="select-option" value="" disabled>
+							Ваша роль
+						</option>
+						<option className="select-option" value="Проджект менеджер">
+							Проджект менеджер
+						</option>
+						<option className="select-option" value="Піар менеджер">
+							Піар менеджер
+						</option>
+						<option className="select-option" value="Розробник">
+							Розробник
+						</option>
+						<option className="select-option" value="Тестувальник">
+							Тестувальник
+						</option>
+						<option className="select-option" value="Керівник відділу">
+							Керівник відділу
+						</option>
 					</select>
 				)
 				break

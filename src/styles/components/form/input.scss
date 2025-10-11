@@ -5,6 +5,14 @@
 	height: toRem(45);
 	border: toRem(1) solid #121212;
 	border-radius: toRem(8);
-	padding-inline: toRem(15);
+	padding-inline: toRem(16);
 	background-color: #fff;
+	outline: toRem(2) solid transparent;
+	outline-offset: toRem(-1);
+	transition: outline-color 0.3s;
+	font-size: toRem(16);
+	color: #121212;
+	&:focus {
+		outline-color: $accentColor;
+	}
 }

@@ -30,16 +30,16 @@ export const formData = {
 			name: 'user-email',
 			label: 'Адреса електронної пошти',
 		},
-		password: {
+		'user-password': {
 			id: 'user-password',
-			type: 'text',
+			type: 'password',
 			value: '',
 			name: 'user-password',
 			label: 'Пароль',
 		},
 		'repeat-password': {
 			id: 'repeat-password',
-			type: 'text',
+			type: 'password',
 			value: '',
 			name: 'repeat-password',
 			label: 'Повторіть пароль',

@@ -1,5 +1,103 @@
 @use "@styles/includes/mixins.scss" as *;
 @use "@styles/settings.scss" as *;
 
+select,
+::picker-icon,
+::picker(select) {
+	appearance: base-select;
+}
+
 .select {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+	align-items: center;
+	border: toRem(1) solid #121212;
+	border-radius: toRem(8);
+	max-width: toRem(240);
+	width: 100%;
+	min-height: toRem(45);
+	font-size: toRem(16);
+	padding-block: toRem(10);
+	transition: all 0.3s;
+	column-gap: toRem(12);
+	outline: toRem(2) solid transparent;
+	outline-offset: toRem(-1);
+	padding-inline: toRem(16);
+	background-color: #fff;
+	color: #121212;
+	transition:
+		background-color 0.3s,
+		color 0.3s;
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: #dce0ff;
+		}
+	}
+	&:focus {
+		outline-color: $accentColor;
+	}
+	&::picker-icon {
+		content: "";
+		width: toRem(15);
+		aspect-ratio: 1;
+		margin-left: 0;
+		will-change: transform;
+		background: url("@img/icons/arrow.svg") center / contain no-repeat;
+		transition: 0.3s rotate;
+		flex-shrink: 0;
+	}
+	&:open::picker-icon {
+		rotate: 180deg;
+	}
+	//=======================================================================================================================================================
+	&-option {
+		display: block;
+		border-top: toRem(1) solid #bbc2ff;
+		padding-block: toRem(9);
+		font-size: toRem(16);
+		line-height: 1.2;
+		letter-spacing: 0.03rem;
+		transition:
+			background-color 0.3s,
+			color 0.3s;
+		padding-inline: toRem(13);
+		text-wrap: wrap;
+		&::checkmark {
+			display: none;
+		}
+		&:checked:not(:disabled) {
+			background-color: $accentColor;
+			color: #fff;
+		}
+		&:disabled {
+			opacity: 0.4;
+			color: #121212;
+			cursor: default;
+		}
+		@media (any-hover: hover) {
+			&:hover:not(:checked, :disabled) {
+				background-color: #c2c7ee;
+			}
+		}
+	}
+}
+
+::picker(select) {
+	border-radius: toRem(8);
+	background-color: #dce0ff;
+	transition: all 0.3s allow-discrete;
+	opacity: 0;
+	bottom: calc(anchor(top) + toRem(6));
+	left: 0;
+	max-width: toRem(219);
+	&:popover-open {
+		opacity: 1;
+	}
+}
+
+@starting-style {
+	::picker(select):popover-open {
+		opacity: 0;
+	}
 }
