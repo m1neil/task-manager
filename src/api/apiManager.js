@@ -13,9 +13,27 @@ export const apiManager = createApi({
 		getAllSpecialization: builder.query({
 			query: () => apiRoutes.specialization.getAll,
 		}),
+		registrationUser: builder.mutation({
+			query: data => ({
+				url: apiRoutes.user.registration,
+				method: 'POST',
+				body: data,
+			}),
+		}),
+		loginUser: builder.mutation({
+			query: data => ({
+				url: apiRoutes.user.login,
+				method: 'POST',
+				data: data,
+			}),
+		}),
 	}),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllSpecializationQuery } = apiManager
+export const {
+	useGetAllSpecializationQuery,
+	useRegistrationUserMutation,
+	useLoginUserMutation,
+} = apiManager

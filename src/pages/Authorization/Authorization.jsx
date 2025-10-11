@@ -1,28 +1,53 @@
-import { Link, useLocation } from 'react-router'
+import { Link, useLocation, useNavigate } from 'react-router'
 import textPage from './options'
 import { formData } from './options'
 import { useEffect, useState } from 'react'
 import styles from './authorization.module.scss'
 import decor from '@img/authorization/decor.svg'
 import InputPassword from '@/components/InputPassword'
+import {
+	useGetAllSpecializationQuery,
+	useRegistrationUserMutation,
+	useLoginUserMutation,
+} from '@/api/apiManager'
+import Select from '@/components/Select'
+import frontRoutes from '@/router/frontRoutes'
+import { apiRoutes } from '@/api/apiRoutes'
+import { createSelectorHook } from 'react-redux'
+import { browser } from 'globals'
 
 function Authorization() {
+	const {
+		data: specialization,
+		isLoading,
+		error,
+	} = useGetAllSpecializationQuery()
+	const [registrationUser, { isLoading: isRegistration }] =
+		useRegistrationUserMutation()
+	const [loginUser, { isLoading: isLogin }] = useLoginUserMutation()
+	const [errorSubmit, setErrorSubmit] = useState(null)
+
 	const namePage = useLocation().pathname.replace('/', '')
 	const [userData, setUserData] = useState(() => formData[namePage])
 	const contentPage = textPage[namePage]
-
-	console.log(formData[namePage])
+	const navigator = useNavigate()
 
 	const changeUserDate = ({ target }) => {
 		const { name, value } = target
+		console.log(value)
 
 		setUserData(prevData => {
 			const prevField = prevData[name]
-			const newField = { ...prevField, value }
+			const newField = {
+				...prevField,
+				value,
+			}
 			return { ...prevData, [name]: newField }
 		})
 	}
 
+	// console.log(userData)
+	console.log(namePage)
 	useEffect(() => {
 		setUserData(formData[namePage])
 	}, [namePage])
@@ -33,43 +58,40 @@ function Authorization() {
 		switch (key) {
 			case 'user-password':
 			case 'repeat-password':
-				field = <InputPassword onChange={changeUserDate} {...data} />
+				field = (
+					<>
+						<InputPassword onChange={changeUserDate} {...data} />
+						{data.error && <div className="error">{data.error}</div>}
+					</>
+				)
 				break
 			case 'user-role':
-				field = (
-					<select
-						className="form-select select"
-						onChange={changeUserDate}
-						{...data}
-					>
-						<option className="select-option" value="" disabled>
-							Ваша роль
-						</option>
-						<option className="select-option" value="Проджект менеджер">
-							Проджект менеджер
-						</option>
-						<option className="select-option" value="Піар менеджер">
-							Піар менеджер
-						</option>
-						<option className="select-option" value="Розробник">
-							Розробник
-						</option>
-						<option className="select-option" value="Тестувальник">
-							Тестувальник
-						</option>
-						<option className="select-option" value="Керівник відділу">
-							Керівник відділу
-						</option>
-					</select>
+				field = isLoading ? (
+					<div>Loading...</div>
+				) : error ? (
+					<div>Ну вдалося отримати ролi!</div>
+				) : (
+					<>
+						<Select
+							onChange={changeUserDate}
+							options={specialization.specializations}
+							data={data}
+						/>
+						{data.error && <div className="error">{data.error}</div>}
+					</>
 				)
 				break
 			default:
 				field = (
-					<input
-						className="form-input input"
-						onChange={changeUserDate}
-						{...data}
-					/>
+					<>
+						<input
+							className="form-input input"
+							data-error-text="Обов'язкове поле!"
+							onChange={changeUserDate}
+							{...data}
+						/>
+						{data.error && <div className="error">{data.error}</div>}
+					</>
 				)
 				break
 		}
@@ -84,6 +106,120 @@ function Authorization() {
 		)
 	}
 
+	const submitForm = async e => {
+		e.preventDefault()
+		const { newUserData, amountErrors } = validateForm()
+		setUserData(newUserData)
+		if (amountErrors) {
+			console.log('Данные не корректны!')
+			return
+		}
+		console.log('Данные корректны едем дальше')
+
+		const dataForSend = transformUserDate(newUserData)
+		try {
+			if (namePage === 'registration') {
+				await registrationUser(dataForSend)
+				navigator(frontRoutes.navigation.login)
+			} else {
+				console.log(dataForSend)
+				// await loginUser(dataForSend)
+				const response = await fetch(
+					`http://localhost:8080/${apiRoutes.user.login}`,
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(dataForSend),
+						credentials: 'include',
+					}
+				)
+
+				if (!response.ok) throw new Error("Couldn't get a cookie!")
+				document.cookie = await response.text()
+			}
+		} catch (error) {
+			setErrorSubmit(error.message)
+		}
+
+		// namePage === 'registration' ? registrationUser(dataForSend) : ''
+	}
+
+	const validateForm = () => {
+		const newData = JSON.parse(JSON.stringify(userData))
+		let amountErrors = 0
+		console.log('newData', newData)
+
+		for (const [key, field] of Object.entries(newData)) {
+			if (key === 'user-role') {
+				console.log('user-role', field.value.trim())
+			}
+
+			if (!field.value.trim()) {
+				newData[key].error = `Обов'язкове поле!`
+				amountErrors++
+			} else if (key === 'user-name') {
+				if (!field.value.trim().split(' ')[1]) {
+					newData[key].error = "Повинне бути вказане ім'я та прізвище!"
+					amountErrors++
+				} else newData[key].error = ''
+			} else if (key === 'user-password') {
+				if (field.value.trim().length < 6) {
+					newData[key].error = 'Пароль повинен містити щонайменше 6 символи!'
+					amountErrors++
+				} else newData[key].error = ''
+			} else if (key === 'repeat-password') {
+				const repeatPassword = field.value.trim()
+				const password = newData['user-password'].value.trim()
+				if (repeatPassword !== password) {
+					field.error = 'Паролі не збігаються!'
+					amountErrors++
+				} else field.error = ''
+			} else if (key === 'user-email') {
+				if (!isValidEmail(field.value.trim())) {
+					field.error = 'Не правильно зазначен email!'
+					amountErrors++
+				} else field.error = ''
+			} else field.error = ''
+		}
+
+		return { newUserData: newData, amountErrors }
+	}
+
+	errorSubmit && console.error(errorSubmit)
+
+	const isValidEmail = value => {
+		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+		return emailRegex.test(value)
+	}
+
+	const transformUserDate = userData => {
+		console.log(userData)
+
+		const dataForSubmit = {}
+		for (const [key, field] of Object.entries(userData)) {
+			switch (key) {
+				case 'user-name': {
+					const [firstName, secondName] = field.value.trim().split(' ')
+					dataForSubmit['firstName'] = firstName
+					dataForSubmit['lastName'] = secondName
+					break
+				}
+				case 'user-email':
+					dataForSubmit['email'] = field.value.trim()
+					break
+				case 'user-password':
+					dataForSubmit['password'] = field.value
+					break
+				case 'user-role':
+					dataForSubmit['specializationId'] = parseInt(field.value)
+					break
+			}
+		}
+		return dataForSubmit
+	}
+
 	return (
 		<section className={styles['authorization']}>
 			<div className={styles['authorization-container']}>
@@ -95,11 +231,16 @@ function Authorization() {
 						{contentPage.text}{' '}
 						<Link to={contentPage.link.url}>{contentPage.link.text}</Link>
 					</div>
-					<form action="#">
+					<form onSubmit={submitForm} action="#">
 						{Object.entries(userData).map(createField)}
-						<button className="form-button button" type="submit">
+						<button
+							className="form-button button"
+							type="submit"
+							disabled={isRegistration || isLogin}
+						>
 							{contentPage.button}
 						</button>
+						{}
 					</form>
 				</div>
 				<img

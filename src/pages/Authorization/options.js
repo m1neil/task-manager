@@ -29,6 +29,7 @@ export const formData = {
 			value: '',
 			name: 'user-email',
 			label: 'Адреса електронної пошти',
+			error: '',
 		},
 		'user-password': {
 			id: 'user-password',
@@ -36,6 +37,7 @@ export const formData = {
 			value: '',
 			name: 'user-password',
 			label: 'Пароль',
+			error: '',
 		},
 		'repeat-password': {
 			id: 'repeat-password',
@@ -43,6 +45,7 @@ export const formData = {
 			value: '',
 			name: 'repeat-password',
 			label: 'Повторіть пароль',
+			error: '',
 		},
 		'user-name': {
 			id: 'user-name',
@@ -50,6 +53,7 @@ export const formData = {
 			value: '',
 			name: 'user-name',
 			label: 'Ім’я та прізвище',
+			error: '',
 		},
 		'user-role': {
 			id: 'user-role',
@@ -57,6 +61,7 @@ export const formData = {
 			value: '',
 			name: 'user-role',
 			label: 'Роль',
+			error: '',
 		},
 	},
 	login: {
@@ -66,6 +71,7 @@ export const formData = {
 			value: '',
 			name: 'user-email',
 			label: 'Адреса електронної пошти',
+			error: '',
 		},
 		'user-password': {
 			id: 'user-password',
@@ -73,6 +79,7 @@ export const formData = {
 			value: '',
 			name: 'user-password',
 			label: 'Пароль',
+			error: '',
 		},
 	},
 }

@@ -14,8 +14,12 @@
 	min-height: toRem(40);
 	padding: toRem(10) toRem(16);
 	transition: background-color 0.3s;
+	&:disabled {
+		cursor: default;
+		background-color: lightgray;
+	}
 	@media (any-hover: hover) {
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: $accentColorHover;
 		}
 	}
