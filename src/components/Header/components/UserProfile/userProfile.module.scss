@@ -1,4 +1,114 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
 .profile {
+	position: relative;
+	@media (any-hover: hover) {
+		&:hover .profile-options {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+			transform: translate(0, 0);
+		}
+	}
+	// Открытие меню: по фокусу внутри профиля или по модификатору
+	&:focus-within .profile-options {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+		pointer-events: auto;
+	}
 }
+.profile-title {
+	min-width: 0;
+	display: flex;
+	align-items: center;
+	column-gap: toRem(10);
+	font-weight: 700;
+	font-size: toRem(16);
+	line-height: 1.25;
+	letter-spacing: 0.04rem;
+	color: #7784ee;
+	text-transform: capitalize;
+	.profile-decor {
+		width: toRem(28);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background-color: $accentColor;
+		color: #fff;
+		text-transform: uppercase;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		line-height: 1;
+		font-size: toRem(12);
+		flex-shrink: 0;
+	}
+	.profile-name {
+		display: block;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		flex-basis: toRem(108);
+	}
+}
+.profile-options {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	padding-top: toRem(8);
+	pointer-events: none;
+	visibility: hidden;
+	transition: all 0.3s;
+	opacity: 0;
+	z-index: 1;
+	transform: translate(0, toRem(5));
+}
+.profile-list {
+	padding: toRem(4);
+	background-color: #fff;
+	border: toRem(1) solid #121212;
+	border-radius: toRem(6);
+	min-width: toRem(200);
+	padding: toRem(4);
+	box-shadow: 0 toRem(8) toRem(20) rgba(0, 0, 0, 0.08);
+}
+.profile-item {
+	font-size: toRem(16);
+	font-weight: 600;
+}
+
+// Кнопка действия в меню
 .profile-button {
+	display: block;
+	width: 100%;
+	text-align: left;
+	padding: toRem(10) toRem(12);
+	border-radius: toRem(6);
+	border: none;
+	font-weight: 600;
+	background: transparent;
+	color: #121212;
+	font-size: toRem(15);
+	letter-spacing: 0.02rem;
+	outline-offset: toRem(2);
+	transition:
+		background-color 0.2s,
+		color 0.2s,
+		transform 0.1s,
+		outline-color 0.2s;
+
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: #dce0ff;
+		}
+	}
+
+	&:focus-visible {
+		outline-color: $accentColor;
+	}
+
+	&:active {
+		transform: translateY(1px);
+	}
 }

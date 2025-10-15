@@ -9,6 +9,7 @@ const BASE_URL = 'http://localhost:8080/'
 export const apiManager = createApi({
 	reducerPath: 'apiManager',
 	baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
+	tagTypes: ['Projects'],
 	endpoints: builder => ({
 		getAllSpecialization: builder.query({
 			query: () => apiRoutes.specialization.getAll,
@@ -27,6 +28,11 @@ export const apiManager = createApi({
 				body: data,
 			}),
 		}),
+		// Projects
+		getAllProjects: builder.query({
+			query: userId => apiRoutes.projects.getAll(userId),
+			providesTags: ['Projects'],
+		}),
 	}),
 })
 
@@ -36,4 +42,5 @@ export const {
 	useGetAllSpecializationQuery,
 	useRegistrationUserMutation,
 	useLoginUserMutation,
+	useGetAllProjectsQuery,
 } = apiManager

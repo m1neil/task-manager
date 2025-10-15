@@ -1,0 +1,18 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.home {
+	padding-block: toRem(80);
+}
+.home-container {
+	display: grid;
+}
+.home-title {
+	margin-bottom: toRem(40);
+}
+.home-add {
+	justify-self: end;
+	margin-bottom: toRem(30);
+}
+.button {
+}

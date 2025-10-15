@@ -1,0 +1,84 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.project-card {
+	border-radius: toRem(8);
+	box-shadow: 0 toRem(30) toRem(60) 0 rgba(32, 56, 85, 0.15);
+	padding: toRem(30) toRem(60);
+	display: flex;
+	align-items: center;
+	column-gap: toRem(40);
+	min-width: 0;
+	&:not(:last-child) {
+		margin-bottom: toRem(30);
+	}
+}
+.project-card-body {
+	min-width: 0;
+	flex-basis: toRem(1000);
+}
+.project-card-name {
+	margin-bottom: toRem(6);
+	a {
+		font-weight: 700;
+		font-size: toRem(22);
+		line-height: 1.08;
+		letter-spacing: 0.01rem;
+		color: #121212;
+		transition: color 0.3s;
+		@media (any-hover: hover) {
+			&:hover {
+				color: $accentColor;
+			}
+		}
+	}
+}
+.project-card-date {
+	font-style: italic;
+	font-size: toRem(15);
+	line-height: 1.8;
+	letter-spacing: 0.02rem;
+	margin-bottom: toRem(10);
+}
+.project-card-description {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.project-card-actions {
+	flex-shrink: 0;
+	display: flex;
+	column-gap: toRem(30);
+}
+.project-card-button {
+	width: toRem(50);
+	aspect-ratio: 1;
+	border: toRem(1) solid #08a0f7;
+	background-color: #e1f2fc;
+	border-radius: toRem(8);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+	transition: background-color 0.3s;
+	img {
+		width: toRem(30);
+		aspect-ratio: 1;
+	}
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: #08a0f7;
+		}
+	}
+}
+
+// Модификатор красной кнопки как отдельный класс для CSS Modules
+.red {
+	background-color: #fff8f8;
+	border-color: #f85640;
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: #f85640;
+		}
+	}
+}

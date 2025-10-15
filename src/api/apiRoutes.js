@@ -6,4 +6,7 @@ export const apiRoutes = {
 	specialization: {
 		getAll: 'api/Specialization/GetAllSpecializations',
 	},
+	projects: {
+		getAll: idUser => `/api/Project/GetAllProjects?userId=${idUser}`,
+	},
 }

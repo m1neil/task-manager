@@ -8,6 +8,7 @@ function App() {
 			<main className="page">
 				<Outlet />
 			</main>
+			<div id="modal-root"></div>
 		</>
 	)
 }

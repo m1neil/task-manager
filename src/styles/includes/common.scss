@@ -6,6 +6,9 @@
 	line-height: 1.2;
 	letter-spacing: 0.01rem;
 	color: #121212;
+	&-purple {
+		color: $accentColor;
+	}
 }
 .title-big {
 	@include adaptiveValue("font-size", 40, 25, 0, $containerPadding, 570);
