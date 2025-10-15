@@ -15,6 +15,7 @@ import frontRoutes from '@/router/frontRoutes'
 import { apiRoutes } from '@/api/apiRoutes'
 import { createSelectorHook } from 'react-redux'
 import { browser } from 'globals'
+import useUser from '@/hooks/useUser'
 
 function Authorization() {
 	const {
@@ -26,7 +27,7 @@ function Authorization() {
 		useRegistrationUserMutation()
 	const [loginUser, { isLoading: isLogin }] = useLoginUserMutation()
 	const [errorSubmit, setErrorSubmit] = useState(null)
-
+	const { setUser } = useUser()
 	const namePage = useLocation().pathname.replace('/', '')
 	const [userData, setUserData] = useState(() => formData[namePage])
 	const contentPage = textPage[namePage]
@@ -46,7 +47,6 @@ function Authorization() {
 	}
 
 	// console.log(userData)
-	// console.log(namePage)
 	useEffect(() => {
 		setUserData(formData[namePage])
 	}, [namePage])
@@ -121,20 +121,18 @@ function Authorization() {
 				await registrationUser(dataForSend).unwrap()
 				navigator(frontRoutes.navigation.login)
 			} else {
-				console.log(dataForSend)
-				await loginUser(dataForSend).unwrap()
+				await loginUser(dataForSend)
+				setUser()
+				navigator(frontRoutes.navigation.home)
 			}
 		} catch (error) {
 			setErrorSubmit(error.message)
 		}
-
-		// namePage === 'registration' ? registrationUser(dataForSend) : ''
 	}
 
 	const validateForm = () => {
 		const newData = JSON.parse(JSON.stringify(userData))
 		let amountErrors = 0
-		console.log('newData', newData)
 
 		for (const [key, field] of Object.entries(newData)) {
 			if (key === 'user-role') {

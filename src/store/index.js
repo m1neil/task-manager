@@ -2,10 +2,12 @@ import { configureStore } from '@reduxjs/toolkit'
 // Or from '@reduxjs/toolkit/query/react'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { apiManager } from '@/api/apiManager'
+import userReducer from '@/store/slices/userSlice'
 
 export const store = configureStore({
 	reducer: {
 		// Add the generated reducer as a specific top-level slice
+		user: userReducer,
 		[apiManager.reducerPath]: apiManager.reducer,
 	},
 	// Adding the api middleware enables caching, invalidation, polling,

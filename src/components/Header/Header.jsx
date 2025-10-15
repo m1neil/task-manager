@@ -3,9 +3,17 @@ import frontRoutes from '@/router/frontRoutes'
 import { NavLink } from 'react-router'
 import SearchProjects from './components/SearchProjects/SearchProjects'
 import styles from './header.module.scss'
+import useUser from '@/hooks/useUser'
+import { useEffect } from 'react'
+import UserProfile from './components/UserProfile/UserProfile'
 
 function Header() {
 	const menu = routes.filter(item => item.meta).map(itemList => itemList.meta)
+	const { user, setUser } = useUser()
+	useEffect(() => {
+		setUser()
+	}, [])
+
 	const createMenu = () => {
 		const items = menu.map((itemMenu, index) => (
 			<li key={index} className={styles['menu-item']}>
@@ -38,21 +46,26 @@ function Header() {
 	return (
 		<header className={styles['header']}>
 			<div className={styles['header-container']}>
-				<div className={styles['header-actions']}>
-					{linksAuthentication.map((link, index) => (
-						<NavLink
-							key={index}
-							className={({ isActive }) =>
-								isActive
-									? `${styles['header-link']} ${styles['active']}`
-									: styles['header-link']
-							}
-							to={link.url}
-						>
-							{link.title}
-						</NavLink>
-					))}
-				</div>
+				{user?.isAuthorized ? (
+					<UserProfile />
+				) : (
+					<div className={styles['header-actions']}>
+						{linksAuthentication.map((link, index) => (
+							<NavLink
+								key={index}
+								className={({ isActive }) =>
+									isActive
+										? `${styles['header-link']} ${styles['active']}`
+										: styles['header-link']
+								}
+								to={link.url}
+							>
+								{link.title}
+							</NavLink>
+						))}
+					</div>
+				)}
+
 				<SearchProjects suffix={styles['header-search']} />
 				<div className={`${styles['header-menu']} ${styles['menu']}`}>
 					<nav className={styles['menu-body']}>{createMenu()}</nav>
