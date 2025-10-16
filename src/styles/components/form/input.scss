@@ -16,3 +16,13 @@
 		outline-color: $accentColor;
 	}
 }
+
+textarea.input {
+	min-height: toRem(150);
+	border: toRem(1) solid #e2e8f0;
+	border-radius: toRem(15);
+	background-color: #f4f7fc;
+	resize: none;
+	padding-block: toRem(16);
+	line-height: 1.45;
+}

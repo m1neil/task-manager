@@ -44,7 +44,7 @@ function Header() {
 	]
 
 	return (
-		<header className={styles['header']}>
+		<header data-fixed-scroll className={styles['header']}>
 			<div className={styles['header-container']}>
 				{user?.isAuthorized ? (
 					<UserProfile />

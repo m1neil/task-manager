@@ -1,0 +1,62 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.new-project {
+	border-radius: toRem(8);
+	overflow: hidden;
+}
+.new-project-top {
+	background-color: $accentColor;
+	padding: toRem(30);
+	color: #fff;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	column-gap: toRem(20);
+}
+.new-project-content {
+}
+.new-project-title {
+	font-weight: 600;
+	font-size: toRem(27);
+	margin-bottom: toRem(7);
+}
+.new-project-subtitle {
+	font-weight: 400;
+	font-size: toRem(16);
+}
+.new-project-close {
+	flex-shrink: 0;
+	width: toRem(35);
+	aspect-ratio: 1;
+	border-radius: toRem(8);
+	background-color: #bbc2ff;
+	position: relative;
+	transition: background-color 0.3s;
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		width: toRem(18);
+		height: toRem(1);
+		top: 50%;
+		left: 50%;
+		border-radius: toRem(5);
+		background-color: #000;
+		transform: translate(-50%, -50%) rotate(45deg);
+	}
+	&::after {
+		transform: translate(-50%, -50%) rotate(-45deg);
+	}
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: #ffb3b3;
+		}
+	}
+}
+.new-project-body {
+	background-color: #fdfbff;
+	padding: toRem(30) toRem(30) toRem(57);
+}
+.new-project-form {
+}

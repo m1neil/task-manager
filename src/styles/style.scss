@@ -18,9 +18,8 @@ body {
 	font-family: $fontFamily;
 	font-size: #{$fontSize}px;
 	background-color: #fdfbff;
-
 	// Скролл заблоковано
-	[data-fls-scrolllock] & {
+	.--scroll-lock & {
 		overflow: hidden;
 		touch-action: none;
 		overscroll-behavior: none;
@@ -32,6 +31,9 @@ body {
 
 :root {
 	--header-height: 84px;
+}
+
+html {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

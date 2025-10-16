@@ -20,6 +20,19 @@
 	color: #535353;
 	margin-bottom: toRem(16);
 	cursor: pointer;
+	&.--small {
+		font-size: toRem(17);
+		color: #616975;
+		margin-bottom: toRem(10);
+	}
+	&:has(+ .input[data-required]) {
+		column-gap: toRem(5);
+		&::after {
+			content: "*";
+			color: #f48989;
+			margin-left: 4px;
+		}
+	}
 }
 .form-password {
 	position: relative;
@@ -69,4 +82,18 @@
 }
 .form-button {
 	width: 100%;
+	min-width: toRem(275);
+	&--center {
+		width: auto;
+		position: relative;
+		left: 50%;
+		transform: translate(-50%, 0);
+	}
+}
+.form-symbols {
+	text-align: right;
+	font-weight: 300;
+	font-size: toRem(13);
+	color: #9ca6b5;
+	margin-top: toRem(7);
 }
