@@ -41,6 +41,13 @@ export const apiManager = createApi({
 			}),
 			invalidatesTags: ['Projects'],
 		}),
+		deleteProject: builder.mutation({
+			query: idProject => ({
+				url: apiRoutes.projects.delete(idProject),
+				method: 'DELETE',
+			}),
+			invalidatesTags: ['Projects'],
+		}),
 	}),
 })
 
@@ -52,4 +59,5 @@ export const {
 	useLoginUserMutation,
 	useGetAllProjectsQuery,
 	useCreateProjectMutation,
+	useDeleteProjectMutation,
 } = apiManager

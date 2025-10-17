@@ -76,8 +76,12 @@
 .red {
 	background-color: #fff8f8;
 	border-color: #f85640;
+	&:disabled {
+		background-color: lightgray;
+		border-color: rgb(180, 179, 179);
+	}
 	@media (any-hover: hover) {
-		&:hover {
+		&:hover:not(:disabled) {
 			background-color: #f85640;
 		}
 	}

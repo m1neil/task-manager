@@ -1,17 +1,21 @@
 export const bodyUtile = {
 	bodyLock: function () {
 		document.documentElement.classList.add('--scroll-lock')
-		document.documentElement.style.paddingRight = `${
-			this.getWidthScroll() / 16
-		}rem`
-		this.addPaddingFixedElements()
+		if (document.documentElement.scrollHeight > window.innerHeight) {
+			document.documentElement.style.paddingRight = `${
+				this.getWidthScroll() / 16
+			}rem`
+			this.addPaddingFixedElements()
+		}
 	},
 
 	bodyUnLock: function (delay) {
 		setTimeout(() => {
 			document.documentElement.classList.remove('--scroll-lock')
-			document.documentElement.style.removeProperty('padding-right')
-			this.removePaddingFixedElements()
+			if (document.documentElement.scrollHeight > window.innerHeight) {
+				document.documentElement.style.removeProperty('padding-right')
+				this.removePaddingFixedElements()
+			}
 		}, delay)
 	},
 

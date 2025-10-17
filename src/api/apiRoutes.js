@@ -9,5 +9,6 @@ export const apiRoutes = {
 	projects: {
 		getAll: idUser => `/api/Project/GetAllProjects?userId=${idUser}`,
 		create: '/api/Project/Create',
+		delete: idProject => `/api/Project/Delete/${idProject}`,
 	},
 }
