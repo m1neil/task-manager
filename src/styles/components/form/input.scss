@@ -12,8 +12,23 @@
 	transition: outline-color 0.3s;
 	font-size: toRem(16);
 	color: #121212;
+	&::placeholder {
+		transition:
+			opacity 0.3s,
+			color 0.3s;
+	}
+	&.--error {
+		outline-color: #f48989;
+		&::placeholder {
+			color: #f48989;
+		}
+	}
+
 	&:focus {
 		outline-color: $accentColor;
+		&::placeholder {
+			opacity: 0;
+		}
 	}
 }
 

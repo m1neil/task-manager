@@ -1,38 +1,13 @@
 import useUser from '@/hooks/useUser'
 import ProjectsList from './components/ProjectsList/ProjectsList'
 import Popup from '@/components/Popup/Popup'
-import { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './home.module.scss'
 import FormCreateProject from './components/FormCreateProject/FormCreateProject'
+import usePopup from '@/hooks/usePopup'
 
 function Home() {
 	const { user } = useUser()
-	const [isOpenPopup, setIsOpenPopup] = useState(false)
-	const isAnimationRef = useRef(false)
-	const animationDuration = 300
-
-	useEffect(() => {
-		isAnimationRef.current = true
-		const timeoutAnimation = setTimeout(() => {
-			isAnimationRef.current = false
-		}, animationDuration)
-		return () => clearTimeout(timeoutAnimation)
-	}, [isOpenPopup])
-
-	const onOpen = () => {
-		if (isAnimationRef.current) return
-		setIsOpenPopup(true)
-	}
-
-	const onClose = ({ type, target, code }) => {
-		if (isAnimationRef.current) return
-		let isClosePopup
-		if (type === 'click')
-			isClosePopup =
-				!target.closest('.popup-body') || target.closest('[data-close-modal]')
-		else if (code === 'Escape') isClosePopup = true
-		if (isClosePopup) setIsOpenPopup(false)
-	}
+	const [isOpenPopup, setIsOpen, onOpenPopup, onClosePopup] = usePopup(300)
 
 	return (
 		<section className={styles.home}>
@@ -43,17 +18,17 @@ function Home() {
 						<button
 							type="button"
 							className={`${styles['home-add']} button`}
-							onClick={onOpen}
+							onClick={onOpenPopup}
 						>
 							Додати проект
 						</button>
 						<Popup
-							delay={animationDuration}
+							delay={300}
 							selector={'#popup-create-project'}
 							isOpen={isOpenPopup}
-							onClose={onClose}
+							onClose={onClosePopup}
 						>
-							<FormCreateProject />
+							<FormCreateProject setIsOpenPopup={setIsOpen} />
 						</Popup>
 					</>
 				)}

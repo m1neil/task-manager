@@ -33,6 +33,14 @@ export const apiManager = createApi({
 			query: userId => apiRoutes.projects.getAll(userId),
 			providesTags: ['Projects'],
 		}),
+		createProject: builder.mutation({
+			query: data => ({
+				url: apiRoutes.projects.create,
+				method: 'POST',
+				body: data,
+			}),
+			invalidatesTags: ['Projects'],
+		}),
 	}),
 })
 
@@ -43,4 +51,5 @@ export const {
 	useRegistrationUserMutation,
 	useLoginUserMutation,
 	useGetAllProjectsQuery,
+	useCreateProjectMutation,
 } = apiManager
