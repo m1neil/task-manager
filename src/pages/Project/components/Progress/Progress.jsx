@@ -1,13 +1,15 @@
-import './Progress.scss'
+import styles from './Progress.module.scss'
 
 function Progress() {
 	return (
-		<div className="project-progress progress">
-			<h2 className="progress-title title title-decor">Тижневий прогрес</h2>
-			<div className="progress-circle">
-				<div className="progress-value">75%</div>
-				<div className="progress-label">для завершення завдання</div>
-				<div className="circle-bar"></div>
+		<div className={styles.progress}>
+			<h2 className={`${styles['progress-title']} title title-decor`}>
+				Прогрес виконання
+			</h2>
+			<div className={styles['progress-circle']}>
+				<div className={styles['progress-value']}>75%</div>
+				<div className={styles['progress-label']}>для завершення завдання</div>
+				<div className={styles['circle-bar']}></div>
 			</div>
 		</div>
 	)

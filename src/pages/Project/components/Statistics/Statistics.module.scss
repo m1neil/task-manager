@@ -1,0 +1,75 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.statistics {
+	flex-basis: toRem(300);
+	padding: toRem(30);
+	border-radius: toRem(8);
+	border: toRem(1) solid $accentColor;
+	background-color: #fdfbff;
+}
+.statistics-title {
+	margin-bottom: toRem(26);
+	text-align: center;
+}
+.statistics-list {
+}
+.statistics-item {
+	&:not(:last-child) {
+		margin-bottom: toRem(24);
+	}
+}
+.statistics-top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	column-gap: toRem(10);
+	margin-bottom: toRem(4);
+}
+.statistics-label {
+	font-size: toRem(16);
+	line-height: 1.4;
+	letter-spacing: 0.02em;
+	color: #121212;
+	font-weight: 500;
+}
+.statistics-progress {
+	font-size: toRem(14);
+	letter-spacing: 0.02rem;
+	color: rgba(18, 18, 18, 0.5);
+}
+.statistics-line {
+	position: relative;
+	border-radius: toRem(5);
+	background-color: rgba(8, 159, 247, 0.5);
+	height: toRem(5);
+	span {
+		position: absolute;
+		width: 75%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-color: #089ff7;
+		border-radius: toRem(5);
+	}
+	.--green & {
+		background-color: rgba(70, 189, 131, 0.5);
+		span {
+			background-color: #46bd84;
+		}
+	}
+	.--orange & {
+		background-color: rgba(251, 165, 60, 0.5);
+		span {
+			background-color: #fba63c;
+		}
+	}
+	.--red & {
+		background-color: rgba(248, 85, 64, 0.2);
+		span {
+			background-color: #f85640;
+		}
+	}
+}
+.statistics-files {
+}

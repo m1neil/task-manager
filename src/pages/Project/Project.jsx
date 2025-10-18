@@ -2,6 +2,7 @@ import { useParams } from 'react-router'
 import './Project.scss'
 import Members from './components/Members/Members'
 import Progress from './components/Progress/Progress'
+import Statistics from './components/Statistics/Statistics'
 
 function Project() {
 	const { id } = useParams()
@@ -28,49 +29,7 @@ function Project() {
 					</div>
 					<div className="project-info">
 						<Progress />
-						<div className="project-statistics statistics">
-							<h2 className="statistics-title title title-middle title-decor">
-								Прогрес по завданням
-							</h2>
-							<div className="statistics-list">
-								<div className="statistics-item">
-									<div className="statistics-top">
-										<div className="statistics-label">Текстова частина</div>
-										<div className="statistics-progress">3/8</div>
-									</div>
-									<div className="statistics-line">
-										<span></span>
-									</div>
-								</div>
-								<div className="statistics-item --green">
-									<div className="statistics-top">
-										<div className="statistics-label">Ілюстрації</div>
-										<div className="statistics-progress">6/10</div>
-									</div>
-									<div className="statistics-line">
-										<span></span>
-									</div>
-								</div>
-								<div className="statistics-item --orange">
-									<div className="statistics-top">
-										<div className="statistics-label">Інтерфейс</div>
-										<div className="statistics-progress">10/10</div>
-									</div>
-									<div className="statistics-line">
-										<span></span>
-									</div>
-								</div>
-								<div className="statistics-item --red">
-									<div className="statistics-top">
-										<div className="statistics-label">Розробка</div>
-										<div className="statistics-progress">2/7</div>
-									</div>
-									<div className="statistics-line">
-										<span></span>
-									</div>
-								</div>
-							</div>
-						</div>
+						<Statistics />
 						<div className="statistics-files files">
 							<h2 className="files-title title title-middle title-decor">
 								Вкладені файли

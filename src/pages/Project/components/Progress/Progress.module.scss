@@ -8,7 +8,8 @@
 	padding: toRem(30);
 }
 .progress-title {
-	margin-bottom: toRem(35);
+	margin-bottom: toRem(26);
+	text-align: center;
 }
 .progress-circle {
 	max-width: toRem(169);
@@ -38,8 +39,8 @@
 	&::before {
 		content: "";
 		position: absolute;
-		width: toRem(155);
-		height: toRem(155);
+		width: toRem(154);
+		height: toRem(154);
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
@@ -59,5 +60,7 @@
 	z-index: 2;
 	font-size: toRem(13);
 	letter-spacing: 0.03rem;
+	line-height: 1.1;
 	max-width: toRem(110);
+	color: rgba(18, 18, 18, 0.5);
 }
