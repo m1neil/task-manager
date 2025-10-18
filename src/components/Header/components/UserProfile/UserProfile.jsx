@@ -1,5 +1,5 @@
 import useUser from '@/hooks/useUser'
-import styles from './userProfile.module.scss'
+import styles from './UserProfile.module.scss'
 
 function UserProfile() {
 	const { user, logoutUser } = useUser()

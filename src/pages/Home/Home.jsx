@@ -1,9 +1,9 @@
 import useUser from '@/hooks/useUser'
 import ProjectsList from './components/ProjectsList/ProjectsList'
 import Popup from '@/components/Popup/Popup'
-import styles from './home.module.scss'
 import FormCreateProject from './components/FormCreateProject/FormCreateProject'
 import usePopup from '@/hooks/usePopup'
+import styles from './Home.module.scss'
 
 function Home() {
 	const { user } = useUser()

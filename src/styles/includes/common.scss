@@ -9,13 +9,20 @@
 	&-purple {
 		color: $accentColor;
 	}
-}
-.title-big {
-	@include adaptiveValue("font-size", 40, 25, 0, $containerPadding, 570);
+	&-middle {
+		font-weight: 600;
+		font-size: toRem(25);
+	}
+	&-big {
+		@include adaptiveValue("font-size", 40, 25, 0, $containerPadding, 570);
+	}
+	&-decor {
+		padding-bottom: toRem(10);
+		border-bottom: toRem(1) solid #bbc2ff;
+	}
 }
 
 //========================================================================================================================================================
-
 .error {
 	// Универсальный стиль ошибок под стилистику сайта
 	display: block;
@@ -24,4 +31,10 @@
 	letter-spacing: 0.02rem;
 	font-weight: 500;
 	color: #e74c3c; // базовый красный оттенок для ошибок
+}
+
+//========================================================================================================================================================
+.text {
+	line-height: 1.35;
+	letter-spacing: 0.02rem;
 }

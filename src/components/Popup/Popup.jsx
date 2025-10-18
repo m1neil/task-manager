@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom'
-import './popup.scss'
 import { useEffect } from 'react'
-import { bodyUtile } from '@/utiles/bodyUtile'
+import { bodyUtile } from '@/utils/bodyUtile'
+import styles from './Popup.module.scss'
 
 function Popup({ selector, children, isOpen, onClose, delay }) {
 	useEffect(() => {
@@ -19,11 +19,12 @@ function Popup({ selector, children, isOpen, onClose, delay }) {
 	return createPortal(
 		<div
 			onClick={onClose}
-			onKeyDown={onClose}
-			className={`popup ${isOpen && 'popup--open'}`}
+			className={`${styles['popup']} ${isOpen ? styles['--open'] : ''}`}
 		>
-			<div className="popup-container">
-				<div className="popup-body">{children}</div>
+			<div className={styles['popup-container']}>
+				<div data-body-popup className={styles['popup-body']}>
+					{children}
+				</div>
 			</div>
 		</div>,
 		document.querySelector(selector)

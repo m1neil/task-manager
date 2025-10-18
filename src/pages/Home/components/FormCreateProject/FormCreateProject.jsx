@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './FormCreateProject.scss'
 import { useCreateProjectMutation } from '@/api/apiManager'
 import useUser from '@/hooks/useUser'
+import styles from './FormCreateProject.module.scss'
 
 function FormCreateProject({ setIsOpenPopup }) {
 	const [name, setName] = useState('')
@@ -39,11 +39,11 @@ function FormCreateProject({ setIsOpenPopup }) {
 	}
 
 	return (
-		<div className="new-project">
-			<div className="new-project-top">
-				<div className="new-project-content">
-					<h4 className="new-project-title">Новий проект</h4>
-					<div className="new-project-subtitle">
+		<div className={styles['new-project']}>
+			<div className={styles['new-project-top']}>
+				<div className={styles['new-project-content']}>
+					<h4 className={styles['new-project-title']}>Новий проект</h4>
+					<div className={styles['new-project-subtitle']}>
 						Створіть проект для вашої команди
 					</div>
 				</div>
@@ -51,13 +51,13 @@ function FormCreateProject({ setIsOpenPopup }) {
 					data-close-modal
 					type="button"
 					aria-label="close modal window"
-					className="new-project-close"
+					className={styles['new-project-close']}
 				></button>
 			</div>
-			<div className="new-project-body">
+			<div className={styles['new-project-body']}>
 				<form
 					onSubmit={submitForm}
-					className="new-project-form form"
+					className={`${styles['new-project-form']} form`}
 					action="#"
 				>
 					<div className="form-line">

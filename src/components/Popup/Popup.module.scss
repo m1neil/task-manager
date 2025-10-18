@@ -15,10 +15,10 @@
 	transition:
 		opacity 0.3s,
 		visibility 0.3s;
-	&--open {
-		opacity: 1;
-		visibility: visible;
-	}
+}
+.popup.--open {
+	opacity: 1;
+	visibility: visible;
 }
 .popup-container {
 	display: flex;

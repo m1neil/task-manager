@@ -1,6 +1,6 @@
 import iconSearch from '@/assets/icons/search.svg'
-import styles from './searchProjects.module.scss'
 import { useState } from 'react'
+import styles from './SearchProjects.module.scss'
 
 function SearchProjects({ suffix }) {
 	const [search, setSearch] = useState('')

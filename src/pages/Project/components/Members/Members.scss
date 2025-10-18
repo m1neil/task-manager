@@ -1,0 +1,33 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.members {
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+}
+.members-list {
+	display: flex;
+	column-gap: toRem(5);
+	flex-shrink: 0;
+}
+.members-item {
+	width: toRem(34);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background-color: lightgray;
+	&:nth-child(1) {
+		background-color: #08a0f7;
+	}
+	&:nth-child(2) {
+		background-color: #34a770;
+	}
+	&:nth-child(3) {
+		background-color: #fba63c;
+	}
+}
+.members-amount {
+	font-weight: 500;
+	font-size: toRem(15);
+	letter-spacing: 0.02rem;
+}

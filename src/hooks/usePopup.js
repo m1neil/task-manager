@@ -22,7 +22,8 @@ const usePopup = delayAnimation => {
 		let isClosePopup
 		if (type === 'click')
 			isClosePopup =
-				!target.closest('.popup-body') || target.closest('[data-close-modal]')
+				!target.closest('[data-body-popup]') ||
+				target.closest('[data-close-modal]')
 		else if (code === 'Escape') isClosePopup = true
 		if (isClosePopup) setIsOpen(false)
 	}

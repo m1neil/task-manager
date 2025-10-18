@@ -2,20 +2,17 @@ import { Link, useLocation, useNavigate } from 'react-router'
 import textPage from './options'
 import { formData } from './options'
 import { useEffect, useState } from 'react'
-import styles from './authorization.module.scss'
+import useUser from '@/hooks/useUser'
+import frontRoutes from '@/router/frontRoutes'
 import decor from '@img/authorization/decor.svg'
 import InputPassword from '@/components/InputPassword'
+import Select from '@/components/Select'
 import {
 	useGetAllSpecializationQuery,
 	useRegistrationUserMutation,
 	useLoginUserMutation,
 } from '@/api/apiManager'
-import Select from '@/components/Select'
-import frontRoutes from '@/router/frontRoutes'
-import { apiRoutes } from '@/api/apiRoutes'
-import { createSelectorHook } from 'react-redux'
-import { browser } from 'globals'
-import useUser from '@/hooks/useUser'
+import styles from './Authorization.module.scss'
 
 function Authorization() {
 	const {

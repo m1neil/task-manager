@@ -1,0 +1,63 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.progress {
+	border-radius: toRem(8);
+	background-color: #fdfbff;
+	border: toRem(1) solid $accentColor;
+	padding: toRem(30);
+}
+.progress-title {
+	margin-bottom: toRem(35);
+}
+.progress-circle {
+	max-width: toRem(169);
+	margin-inline: auto;
+	text-align: center;
+	aspect-ratio: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
+	z-index: 1;
+	row-gap: toRem(7);
+}
+.circle-bar {
+	position: absolute;
+	width: toRem(169);
+	aspect-ratio: 1;
+	top: 50%;
+	left: 50%;
+	background: conic-gradient(#33ac72 75%, #ecf3fe 0%);
+	background-color: #33ac72;
+	display: flex;
+	place-items: center;
+	border-radius: 50%;
+	transform: translate(-50%, -50%) rotate(-180deg);
+	&::before {
+		content: "";
+		position: absolute;
+		width: toRem(155);
+		height: toRem(155);
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background-color: #fdfbff;
+		border-radius: 50%;
+	}
+}
+.progress-value {
+	position: relative;
+	z-index: 2;
+	font-weight: 700;
+	font-size: toRem(32);
+	color: #33ac72;
+}
+.progress-label {
+	position: relative;
+	z-index: 2;
+	font-size: toRem(13);
+	letter-spacing: 0.03rem;
+	max-width: toRem(110);
+}

@@ -2,10 +2,10 @@ import { routes } from '@/router'
 import frontRoutes from '@/router/frontRoutes'
 import { NavLink } from 'react-router'
 import SearchProjects from './components/SearchProjects/SearchProjects'
-import styles from './header.module.scss'
 import useUser from '@/hooks/useUser'
 import { useEffect } from 'react'
 import UserProfile from './components/UserProfile/UserProfile'
+import styles from './Header.module.scss'
 
 function Header() {
 	const menu = routes.filter(item => item.meta).map(itemList => itemList.meta)

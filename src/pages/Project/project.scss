@@ -1,0 +1,118 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.project {
+	padding-block: toRem(80);
+}
+.project-container {
+}
+.project-content {
+	border-radius: toRem(8);
+	background-color: #fff;
+	box-shadow: 0 toRem(30) toRem(60) 0 rgba(32, 56, 85, 0.15);
+	padding: toRem(30);
+	&:not(:last-child) {
+		margin-bottom: toRem(50);
+	}
+}
+.project-top {
+	border-radius: toRem(8);
+	background-color: #fdfbff;
+	border: toRem(1) solid $accentColor;
+	padding: toRem(30);
+	margin-bottom: toRem(30);
+}
+.project-name {
+	margin-bottom: toRem(4);
+}
+.project-date {
+	font-style: italic;
+	font-size: toRem(15);
+	line-height: 1.2;
+	letter-spacing: 0.02rem;
+	&:not(:last-child) {
+		margin-bottom: toRem(10);
+	}
+}
+.project-text {
+	&:not(:last-child) {
+		margin-bottom: toRem(14);
+	}
+}
+
+.project-info {
+	display: flex;
+	gap: toRem(30);
+}
+.progress {
+	flex-basis: toRem(261);
+}
+.progress-title {
+}
+.progress-circle {
+}
+.progress-value {
+}
+.progress-label {
+}
+
+.statistics {
+	flex-basis: toRem(261);
+}
+.statistics-title {
+}
+.statistics-list {
+}
+.statistics-item {
+}
+.statistics-top {
+}
+.statistics-label {
+}
+.statistics-progress {
+}
+.statistics-line {
+}
+.statistics-files {
+}
+.files {
+	flex-basis: toRem(589);
+}
+.files-title {
+}
+.files-items {
+}
+.file {
+}
+.file-icon {
+}
+.file-content {
+}
+.file-name {
+}
+.file-size {
+}
+.file-actions {
+}
+.file-download {
+}
+.file-code {
+}
+.file-status {
+}
+.files-actions {
+}
+.files-remove {
+}
+.files-add {
+}
+.project-row {
+}
+.project-notes {
+}
+.notes {
+}
+.project-tasks {
+}
+.tasks {
+}
