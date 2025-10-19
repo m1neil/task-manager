@@ -44,47 +44,18 @@
 	display: flex;
 	gap: toRem(30);
 }
-.progress {
-}
 
-.files {
-	flex-basis: toRem(589);
+.project-lists {
+	display: flex;
+	column-gap: toRem(30);
 }
-.files-title {
+.project-list {
+	padding: toRem(30);
+	border-radius: toRem(8);
+	background-color: #fdfbff;
+	border: toRem(1) solid $accentColor;
+	flex: 1 1 toRem(20);
 }
-.files-items {
-}
-.file {
-}
-.file-icon {
-}
-.file-content {
-}
-.file-name {
-}
-.file-size {
-}
-.file-actions {
-}
-.file-download {
-}
-.file-code {
-}
-.file-status {
-}
-.files-actions {
-}
-.files-remove {
-}
-.files-add {
-}
-.project-row {
-}
-.project-notes {
-}
-.notes {
-}
-.project-tasks {
-}
-.tasks {
+.project-label {
+	margin-bottom: toRem(30);
 }

@@ -1,0 +1,56 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.note {
+	.note-link {
+		@media (any-hover: hover) {
+			&:hover {
+				.note-title {
+					color: #9d1cb2;
+				}
+			}
+		}
+	}
+	&:nth-child(even) {
+		.note-link {
+			border-color: #e67ff7;
+			@media (any-hover: hover) {
+				&:hover {
+					.note-title {
+						color: #e67ff7;
+					}
+				}
+			}
+		}
+	}
+	&:not(:last-child) {
+		margin-bottom: toRem(10);
+	}
+}
+.note-link {
+	display: block;
+	border: toRem(1) solid #9d1cb2;
+	border-left-width: toRem(6);
+	border-radius: toRem(8);
+	background-color: #dce0ff;
+	padding: toRem(15);
+	color: #121212;
+	> *:not(:last-child) {
+		margin-bottom: toRem(8);
+	}
+}
+.note-title {
+	font-weight: 600;
+	line-height: 1.23077;
+	transition: color 0.3s;
+}
+.note-description {
+	font-weight: 400;
+	font-size: toRem(16);
+	line-height: 1.5;
+}
+.note-date {
+	font-style: italic;
+	font-size: toRem(14);
+	text-align: right;
+}

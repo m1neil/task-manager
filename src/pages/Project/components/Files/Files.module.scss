@@ -1,0 +1,99 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.files {
+	flex-basis: toRem(598);
+	padding: toRem(30);
+	border-radius: toRem(8);
+	background-color: #fdfbff;
+	border: toRem(1) solid $accentColor;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+.files-title {
+	margin-bottom: toRem(26);
+}
+.files-items {
+	flex-grow: 1;
+}
+
+.file {
+	display: flex;
+	align-items: center;
+	column-gap: toRem(15);
+
+	&:not(:last-child) {
+		margin-bottom: toRem(15);
+	}
+}
+.file-icon {
+	flex-shrink: 0;
+	width: toRem(35);
+	aspect-ratio: 35 / 41;
+	object-fit: contain;
+}
+.file-content {
+	flex-grow: 1;
+	color: #121212;
+	min-width: 0;
+}
+.file-name {
+	font-size: toRem(15);
+	font-weight: 600;
+	line-height: 1.2;
+	margin-bottom: toRem(3);
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.file-size {
+	font-size: toRem(12);
+	line-height: 1.2;
+	letter-spacing: 0.03rem;
+}
+
+.files-actions {
+	flex-shrink: 0;
+	display: flex;
+	column-gap: toRem(15);
+}
+.file-code,
+.file-download,
+.file-delete {
+	width: toRem(39);
+	aspect-ratio: 1;
+	border: toRem(1) solid $accentColor;
+	border-radius: toRem(8);
+	display: flex;
+	place-content: center;
+	background-color: #d2d7ff;
+	transition:
+		background-color 0.3s,
+		border-color 0.3s;
+	img {
+		width: toRem(19);
+		aspect-ratio: 1;
+		object-fit: contain;
+	}
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: $accentColor;
+		}
+	}
+}
+.file-download {
+}
+.file-delete {
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: #fff8f8;
+			border-color: #f85640;
+		}
+	}
+}
+
+.files-add {
+	align-self: flex-start;
+	min-width: toRem(168);
+}

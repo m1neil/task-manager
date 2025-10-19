@@ -2,13 +2,14 @@
 @use "@styles/settings.scss" as *;
 
 .progress {
+	flex-basis: toRem(261);
 	border-radius: toRem(8);
 	background-color: #fdfbff;
 	border: toRem(1) solid $accentColor;
 	padding: toRem(30);
 }
 .progress-title {
-	margin-bottom: toRem(26);
+	margin-bottom: toRem(35);
 	text-align: center;
 }
 .progress-circle {

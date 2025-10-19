@@ -1,0 +1,14 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.notes {
+}
+.notes-list {
+	max-height: toRem(515);
+	margin-bottom: toRem(30);
+	overflow-y: auto;
+	scrollbar-width: thin;
+	padding-right: toRem(10);
+}
+.notes-create {
+}

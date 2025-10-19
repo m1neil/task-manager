@@ -3,6 +3,8 @@ import './Project.scss'
 import Members from './components/Members/Members'
 import Progress from './components/Progress/Progress'
 import Statistics from './components/Statistics/Statistics'
+import Files from './components/Files/Files'
+import Notes from './components/Notes/Notes'
 
 function Project() {
 	const { id } = useParams()
@@ -30,39 +32,18 @@ function Project() {
 					<div className="project-info">
 						<Progress />
 						<Statistics />
-						<div className="statistics-files files">
-							<h2 className="files-title title title-middle title-decor">
-								Вкладені файли
-							</h2>
-							<div className="files-items">
-								<div className="file">
-									<img src="#" alt="file icon" className="file-icon" />
-									<div className="file-content">
-										<div className="file-name">User-Journey.pdf</div>
-										<div className="file-size">1.4 MB</div>
-									</div>
-									<div className="file-actions">
-										<button type="button" className="file-download">
-											<img src="@img" alt="Image" />
-										</button>
-										<button type="button" className="file-code">
-											<img src="@img" alt="Image" />
-										</button>
-									</div>
-									<div className="file-status">Завантажено</div>
-								</div>
-							</div>
-							<div className="files-actions">
-								<button className="files-remove button">Видалити</button>
-								<div className="files-add button">Додати файл</div>
-							</div>
-						</div>
+						<Files />
 					</div>
 				</div>
 				<div className="project-content">
 					<div className="project-lists">
-						<div className="project-notes notes"></div>
-						<div className="project-tasks tasks"></div>
+						<div className="project-list">
+							<h2 className="project-label title title-decor">Нотатки</h2>
+							<Notes />
+						</div>
+						<div className="project-list">
+							<h2 className="project-label title title-decor">Завдання</h2>
+						</div>
 					</div>
 				</div>
 			</div>
