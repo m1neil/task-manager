@@ -33,6 +33,10 @@ export const apiManager = createApi({
 			query: userId => apiRoutes.projects.getAll(userId),
 			providesTags: ['Projects'],
 		}),
+		getProjectById: builder.query({
+			query: projectId => apiRoutes.projects.getProjectById(projectId),
+			providesTags: (results, error, id) => [{ type: 'Projects', id }],
+		}),
 		createProject: builder.mutation({
 			query: data => ({
 				url: apiRoutes.projects.create,
@@ -55,6 +59,7 @@ export const apiManager = createApi({
 // auto-generated based on the defined endpoints
 export const {
 	useGetAllSpecializationQuery,
+	useGetProjectByIdQuery,
 	useRegistrationUserMutation,
 	useLoginUserMutation,
 	useGetAllProjectsQuery,

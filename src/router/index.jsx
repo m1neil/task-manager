@@ -48,8 +48,11 @@ export const routes = [
 	},
 	{
 		path: frontRoutes.pages.project.base,
-		Component: Project,
 		children: [
+			{
+				index: true,
+				Component: Project,
+			},
 			{
 				path: frontRoutes.pages.project.note,
 				Component: Note,

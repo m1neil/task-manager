@@ -7,8 +7,10 @@ export const apiRoutes = {
 		getAll: 'api/Specialization/GetAllSpecializations',
 	},
 	projects: {
-		getAll: idUser => `/api/Project/GetAllProjects?userId=${idUser}`,
-		create: '/api/Project/Create',
-		delete: idProject => `/api/Project/Delete/${idProject}`,
+		getAll: idUser => `api/Project/GetAllProjects?userId=${idUser}`,
+		create: 'api/Project/Create',
+		delete: idProject => `api/Project/Delete/${idProject}`,
+		getProjectById: idProject =>
+			`api/Project/GetProjectById?projectId=${idProject}`,
 	},
 }

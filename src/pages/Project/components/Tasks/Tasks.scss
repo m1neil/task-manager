@@ -1,0 +1,17 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.tasks {
+	&:not(:last-child) {
+		margin-bottom: toRem(30);
+	}
+}
+.tasks-title {
+	font-weight: 600;
+	font-size: toRem(18);
+	line-height: 1.23077;
+	color: #121212;
+	margin-bottom: toRem(15);
+}
+.tasks-items {
+}

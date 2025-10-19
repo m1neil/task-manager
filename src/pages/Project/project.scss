@@ -55,6 +55,20 @@
 	background-color: #fdfbff;
 	border: toRem(1) solid $accentColor;
 	flex: 1 1 toRem(20);
+	&-flex {
+		display: flex;
+		flex-direction: column;
+	}
+}
+.project-tasks {
+	max-height: toRem(515);
+	margin-bottom: toRem(30);
+	overflow-y: auto;
+	scrollbar-width: thin;
+	padding-right: toRem(10);
+	flex-grow: 1;
+	overscroll-behavior: contain;
+	touch-action: pan-y;
 }
 .project-label {
 	margin-bottom: toRem(30);

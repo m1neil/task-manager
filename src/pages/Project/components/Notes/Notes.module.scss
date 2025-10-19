@@ -9,6 +9,8 @@
 	overflow-y: auto;
 	scrollbar-width: thin;
 	padding-right: toRem(10);
+	overscroll-behavior: contain;
+	touch-action: pan-y;
 }
 .notes-create {
 }

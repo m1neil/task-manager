@@ -1,0 +1,57 @@
+@use "@styles/includes/mixins.scss" as *;
+@use "@styles/settings.scss" as *;
+
+.checkbox {
+	cursor: pointer;
+	position: relative;
+	display: flex;
+	column-gap: toRem(10);
+	font-size: toRem(15);
+	line-height: 1.4;
+	align-items: flex-start;
+	color: #121212;
+	&-block {
+		flex-shrink: 0;
+		position: relative;
+		width: toRem(23);
+		aspect-ratio: 1;
+		border: toRem(1) solid #9d1cb2;
+		border-radius: toRem(4);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: background-color 0.3s;
+		margin-top: toRem(-1);
+		&::before {
+			content: "";
+			width: toRem(15);
+			height: toRem(12);
+			background: url("@/assets/icons/checkmark.svg") center / contain no-repeat;
+			opacity: 0;
+			transition: opacity 0.3s;
+		}
+	}
+	&:has(.checkbox-input:checked) {
+		.checkbox-block {
+			background-color: #9d1cb2;
+			&::before {
+				opacity: 1;
+			}
+		}
+	}
+	@media (any-hover: hover) {
+		&:hover {
+			.checkbox-block {
+				background-color: #9e1cb288;
+			}
+		}
+	}
+	&-input {
+		position: absolute;
+		width: 0;
+		height: 0;
+		top: 0;
+		left: 0;
+		visibility: hidden;
+	}
+}

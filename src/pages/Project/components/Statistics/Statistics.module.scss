@@ -44,11 +44,9 @@
 	background-color: rgba(8, 159, 247, 0.5);
 	height: toRem(5);
 	span {
-		position: absolute;
+		display: block;
 		width: 75%;
 		height: 100%;
-		top: 0;
-		left: 0;
 		background-color: #089ff7;
 		border-radius: toRem(5);
 	}

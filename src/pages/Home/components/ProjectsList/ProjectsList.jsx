@@ -19,7 +19,7 @@ function ProjectsList() {
 		return <div>Не створено жодного проекту!</div>
 
 	return (
-		<div style={{ minWidth: 0 }} className="project-list">
+		<div style={{ minWidth: 0 }}>
 			{projects.projects.map(project => (
 				<ProjectCard key={project.projectId} {...project} />
 			))}

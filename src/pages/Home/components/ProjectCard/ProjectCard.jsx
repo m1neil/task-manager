@@ -4,34 +4,11 @@ import iconTrash from '@/assets/icons/trash.png'
 import iconMember from '@/assets/icons/member.png'
 import { memo } from 'react'
 import { useDeleteProjectMutation } from '@/api/apiManager'
-import styles from './projectCard.module.scss'
-
-// Українські назви місяців у родовому відмінку (для форматів типу "14 березня 2025")
-const months = [
-	'січня',
-	'лютого',
-	'березня',
-	'квітня',
-	'травня',
-	'червня',
-	'липня',
-	'серпня',
-	'вересня',
-	'жовтня',
-	'листопада',
-	'грудня',
-]
+import { getTransformDate } from '@/utils/getTransformDate'
+import styles from './ProjectCard.module.scss'
 
 function ProjectCard({ projectId, name, createdAt, description }) {
 	const [deleteProject, { isLoading: isDeleting }] = useDeleteProjectMutation()
-
-	const transformDate = () => {
-		const date = new Date(createdAt)
-		const day = date.getDate().toString().padStart(2, '0')
-		const month = months[date.getMonth()]
-		const year = date.getFullYear()
-		return `${day} ${month} ${year}`
-	}
 
 	const removeProject = () => {
 		deleteProject(projectId)
@@ -45,7 +22,9 @@ function ProjectCard({ projectId, name, createdAt, description }) {
 						{name}
 					</Link>
 				</h3>
-				<div className={styles['project-card-date']}>{transformDate()}</div>
+				<div className={styles['project-card-date']}>
+					{getTransformDate(createdAt)}
+				</div>
 				<div className={styles['project-card-description']}>{description}</div>
 			</div>
 			<div className={styles['project-card-actions']}>

@@ -25,7 +25,9 @@ const frontRoutes = {
 			note: (idProject, idNote) => `/project/${idProject}/note/${idNote}`,
 			task: (idProject, idTask) => `/project/${idProject}/task/${idTask}`,
 			createNote: (idProject, idNote = '') =>
-				`/project/${idProject}/editor-note/${idNote}`,
+				`/project/${encodeURIComponent(
+					idProject
+				)}/editor-note/${encodeURIComponent(idNote)}`,
 			createTask: (idProject, idTask) =>
 				`/project/${idProject}/editor-task/${idTask}`,
 			participants: idProject => `/project/${idProject}/participants`,
