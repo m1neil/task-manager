@@ -65,16 +65,13 @@ function Authorization() {
 				field = isLoading ? (
 					<div>Loading...</div>
 				) : error ? (
-					<div>Ну вдалося отримати ролi!</div>
+					<div className="error error--mt-0">Ну вдалося отримати ролi!</div>
 				) : (
-					<>
-						<Select
-							onChange={changeUserDate}
-							options={specialization.specializations}
-							data={data}
-						/>
-						{data.error && <div className="error">{data.error}</div>}
-					</>
+					<Select
+						onChange={changeUserDate}
+						options={specialization.specializations}
+						data={data}
+					/>
 				)
 				break
 			default:
@@ -175,8 +172,6 @@ function Authorization() {
 	}
 
 	const transformUserDate = userData => {
-		console.log(userData)
-
 		const dataForSubmit = {}
 		for (const [key, field] of Object.entries(userData)) {
 			switch (key) {

@@ -28,6 +28,7 @@ function ProjectCard({ projectId, name, createdAt, description }) {
 				<div className={styles['project-card-description']}>{description}</div>
 			</div>
 			<div className={styles['project-card-actions']}>
+				{/* TODO: Добавить окошко подтверждения удаления  */}
 				<button
 					type="button"
 					aria-label="remove project"

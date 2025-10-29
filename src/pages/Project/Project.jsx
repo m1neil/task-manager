@@ -5,7 +5,10 @@ import Statistics from './components/Statistics/Statistics'
 import Files from './components/Files/Files'
 import Notes from './components/Notes/Notes'
 import Tasks from './components/Tasks/Tasks'
-import { useGetProjectByIdQuery } from '@/api/apiManager'
+import {
+	useGetAllProjectFilesQuery,
+	useGetProjectByIdQuery,
+} from '@/api/apiManager'
 import { getTransformDate } from '@/utils/getTransformDate'
 import './Project.scss'
 import { useEffect } from 'react'
@@ -19,9 +22,16 @@ function Project() {
 		error,
 		refetch,
 	} = useGetProjectByIdQuery(id)
+	const {
+		data: files,
+		isLoading: isGettingFiles,
+		error: errorGetFiles,
+	} = useGetAllProjectFilesQuery(id)
 
 	useEffect(() => {
-		// TODO: Протестировать, работает ли когда меняется id проекта. Так же написать, что если по итогу ошибка то либо переводить на страницу 404 или писать что проект такой не найден
+		/* TODO: Протестировать, работает ли когда меняется id проекта. 
+		Так же написать, что если по итогу ошибка то либо переводить на страницу 404 или писать что проект такой не найден
+		*/
 		refetch(id)
 	}, [id])
 
@@ -29,6 +39,8 @@ function Project() {
 	console.log('id', id)
 
 	const { name, createdAt, description, projectMemberships } = project ?? {}
+
+	console.log('files', files)
 
 	return (
 		<section className="project">
@@ -51,7 +63,9 @@ function Project() {
 							<div className="project-info">
 								<Progress />
 								<Statistics />
-								<Files />
+								{isGettingFiles && <div>Loading...</div>}
+								{files && <Files idProject={id} files={files.files} />}
+								{errorGetFiles && <div>Ошибка получение файлов!</div>}
 							</div>
 						</div>
 						<div className="project-content">

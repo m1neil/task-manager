@@ -10,6 +10,7 @@ import styles from './Header.module.scss'
 function Header() {
 	const menu = routes.filter(item => item.meta).map(itemList => itemList.meta)
 	const { user, setUser } = useUser()
+
 	useEffect(() => {
 		setUser()
 	}, [])

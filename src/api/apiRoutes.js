@@ -12,5 +12,12 @@ export const apiRoutes = {
 		delete: idProject => `api/Project/Delete/${idProject}`,
 		getProjectById: idProject =>
 			`api/Project/GetProjectById?projectId=${idProject}`,
+		addFile: 'api/FileStorages/UploadFileForProject',
+		getAllProjectFiles: idProject =>
+			`api/FileStorages/GetFilesByProject?projectId=${idProject}`,
+	},
+	file: {
+		getDownloadLink: idFile =>
+			`api/FileStorages/GetFileDownloadUrl?fileStorageId=${idFile}`,
 	},
 }

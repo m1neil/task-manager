@@ -37,6 +37,10 @@ export const apiManager = createApi({
 			query: projectId => apiRoutes.projects.getProjectById(projectId),
 			providesTags: (results, error, id) => [{ type: 'Projects', id }],
 		}),
+		getAllProjectFiles: builder.query({
+			query: projectId => apiRoutes.projects.getAllProjectFiles(projectId),
+			providesTags: (results, error, id) => [{ type: 'Projects', id }],
+		}),
 		createProject: builder.mutation({
 			query: data => ({
 				url: apiRoutes.projects.create,
@@ -52,6 +56,25 @@ export const apiManager = createApi({
 			}),
 			invalidatesTags: ['Projects'],
 		}),
+		addProjectFile: builder.mutation({
+			query: ({ file, idProject }) => {
+				const formData = new FormData()
+				formData.append('ProjectId', idProject)
+				formData.append('ObjectId', idProject)
+				formData.append('file', file)
+
+				return {
+					url: apiRoutes.projects.addFile,
+					method: 'POST',
+					body: formData,
+				}
+			},
+		}),
+		// File
+		getLinkDownloadFile: builder.query({
+			query: idFile => apiRoutes.file.getDownloadLink(idFile),
+			providesTags: (results, error, id) => [{ type: 'Projects', id }],
+		}),
 	}),
 })
 
@@ -60,9 +83,12 @@ export const apiManager = createApi({
 export const {
 	useGetAllSpecializationQuery,
 	useGetProjectByIdQuery,
+	useGetAllProjectFilesQuery,
 	useRegistrationUserMutation,
 	useLoginUserMutation,
 	useGetAllProjectsQuery,
 	useCreateProjectMutation,
 	useDeleteProjectMutation,
+	useAddProjectFileMutation,
+	useGetLinkDownloadFileQuery,
 } = apiManager

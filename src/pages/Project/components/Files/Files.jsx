@@ -1,60 +1,52 @@
-import iconDownload from '@/assets/icons/download.png'
-import iconQrCode from '@/assets/icons/qr-code.svg'
-import iconTrash from '@/assets/icons/trash.png'
-import iconPDF from '@/assets/icons/files/pdf.svg'
 // import { convertBytesToImage } from '@/utils/convertBytesToImage'
 import styles from './Files.module.scss'
+import { useRef } from 'react'
+import { useAddProjectFileMutation } from '@/api/apiManager'
+import File from '../File/File'
 
-function Files() {
+function Files({ idProject, files }) {
+	const fileInput = useRef(null)
+	const [addProjectFile, { isLoading: isSending }] = useAddProjectFileMutation()
+
+	const openExplorer = () => {
+		fileInput.current.click()
+	}
+
+	const sendFile = async ({ target }) => {
+		const file = target.files[0]
+		try {
+			await addProjectFile({ file, idProject })
+			console.log('Успех')
+		} catch (error) {
+			console.error(error.message)
+			console.warn('Ошибка отправки!')
+		}
+	}
+
 	return (
 		<div className={`${styles['statistics-files']} ${styles.files}`}>
 			<h2 className={`${styles['files-title']} title title-decor`}>
 				Вкладені файли
 			</h2>
 			<div className={styles['files-items']}>
-				<div className={styles.file}>
-					<img src={iconPDF} alt="file icon" className={styles['file-icon']} />
-					<div className={styles['file-content']}>
-						<div className={styles['file-name']}>User-Journey.pdf</div>
-						<div className={styles['file-size']}>1.4 MB</div>
-					</div>
-					<div className={styles['files-actions']}>
-						<button type="button" className={styles['file-download']}>
-							<img src={iconDownload} alt="Image" />
-						</button>
-						<button type="button" className={styles['file-code']}>
-							<img src={iconQrCode} alt="Image" />
-						</button>
-						<button type="button" className={styles['file-delete']}>
-							<img src={iconTrash} alt="Image" />
-						</button>
-					</div>
-				</div>
-				<div className={styles.file}>
-					<img src={iconPDF} alt="file icon" className={styles['file-icon']} />
-					<div className={styles['file-content']}>
-						<div className={styles['file-name']}>User-Journey.pdf</div>
-						<div className={styles['file-size']}>1.4 MB</div>
-					</div>
-					<div className={styles['files-actions']}>
-						<a href="#" className={styles['file-download']} download>
-							<img src={iconDownload} alt="Image" />
-						</a>
-						<button type="button" className={styles['file-code']}>
-							<img src={iconQrCode} alt="Image" />
-						</button>
-						<button type="button" className={styles['file-delete']}>
-							<img src={iconTrash} alt="Image" />
-						</button>
-					</div>
-				</div>
+				{files.map(file => (
+					<File key={file.fileStorageId} {...file} />
+				))}
 			</div>
 			<button
 				type="button"
+				onClick={openExplorer}
+				disabled={isSending}
 				className={`${styles['files-add']} button button button-small`}
 			>
 				Додати файл
 			</button>
+			<input
+				onChange={sendFile}
+				className={styles['files-input']}
+				ref={fileInput}
+				type="file"
+			/>
 		</div>
 	)
 }
