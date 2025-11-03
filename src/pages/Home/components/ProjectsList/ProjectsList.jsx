@@ -12,8 +12,6 @@ function ProjectsList() {
 		skip: !user.UserId,
 	})
 
-	console.log(error?.message)
-
 	if (isLoading) return <div>Loading...</div>
 	else if (error)
 		return <div className="error">Не вдалося отримати проекти!</div>

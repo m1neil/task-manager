@@ -1,21 +1,15 @@
 export const bodyUtile = {
 	bodyLock: function () {
 		document.documentElement.classList.add('--scroll-lock')
-		if (document.documentElement.scrollHeight > window.innerHeight) {
-			document.documentElement.style.paddingRight = `${
-				this.getWidthScroll() / 16
-			}rem`
-			this.addPaddingFixedElements()
-		}
+		document.body.style.paddingRight = `${this.getWidthScroll() / 16}rem`
+		this.addPaddingFixedElements()
 	},
 
 	bodyUnLock: function (delay) {
 		setTimeout(() => {
 			document.documentElement.classList.remove('--scroll-lock')
-			if (document.documentElement.scrollHeight > window.innerHeight) {
-				document.documentElement.style.removeProperty('padding-right')
-				this.removePaddingFixedElements()
-			}
+			document.body.style.removeProperty('padding-right')
+			this.removePaddingFixedElements()
 		}, delay)
 	},
 

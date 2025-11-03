@@ -1,4 +1,8 @@
-import { convertBytesToImage } from '@/utils/convertBytesToImage'
+import { BASE_URL } from '@/api/apiManager'
+import styles from './File.module.scss'
+import { useGetLinkDownloadFileQuery } from '@/api/apiManager'
+import { useState } from 'react'
+import { apiRoutes } from '@/api/apiRoutes'
 import iconDownload from '@/assets/icons/download.png'
 import iconQrCode from '@/assets/icons/qr-code.svg'
 import iconTrash from '@/assets/icons/trash.png'
@@ -13,9 +17,6 @@ import iconJpeg from '@/assets/icons/files/jpeg.png'
 import iconMkv from '@/assets/icons/files/mkv.png'
 import iconUnknownFile from '@/assets/icons/files/unknownFile.png'
 
-import styles from './File.module.scss'
-import { useGetLinkDownloadFileQuery } from '@/api/apiManager'
-
 function formatFileSize(bytes) {
 	if (bytes === 0) return '0 B'
 	const k = 1024
@@ -25,8 +26,6 @@ function formatFileSize(bytes) {
 }
 
 const getIconFile = typeFile => {
-	console.log(typeFile)
-
 	const iconsFile = {
 		'vnd.openxmlformats-officedocument.wordprocessingml.document': iconDoc,
 		pdf: iconPDF,
@@ -43,9 +42,39 @@ const getIconFile = typeFile => {
 	return iconsFile[typeFile] ?? iconUnknownFile
 }
 
-function File({ fileStorageId, fileName, mimeType, size, createdAt }) {
-	const { data, isLoading, error } = useGetLinkDownloadFileQuery(fileStorageId)
-	console.log(data)
+function File({
+	fileStorageId,
+	fileName,
+	mimeType,
+	size,
+	createdAt,
+	setSelectedQr,
+	setIsOpenPopup,
+}) {
+	const {
+		data: linkToFile,
+		isLoading: linkToFileLoading,
+		error: linkToFileError,
+	} = useGetLinkDownloadFileQuery(fileStorageId)
+	const [isLoadingQr, setIsLoadingQr] = useState(false)
+
+	// TODO: Вынести в утилиты нативный fetch
+	const onGetQrCode = async () => {
+		setIsLoadingQr(true)
+		try {
+			const response = await fetch(
+				`${BASE_URL}${apiRoutes.file.getQrCode(fileStorageId)}`
+			)
+			if (!response.ok) throw new Error('Failed to get qr code!')
+			const qrCodeText = await response.json()
+			setSelectedQr(qrCodeText)
+			setIsOpenPopup(true)
+		} catch (error) {
+			console.error(error)
+		} finally {
+			setIsLoadingQr(false)
+		}
+	}
 
 	return (
 		<div className={styles.file}>
@@ -62,15 +91,20 @@ function File({ fileStorageId, fileName, mimeType, size, createdAt }) {
 				<a
 					download
 					target="_blank"
-					href={data?.value.url ?? ''}
+					href={linkToFile?.value.url ?? ''}
 					type="button"
 					className={`${styles['file-download']} ${
-						!data && styles['disabled']
+						!linkToFile && styles['disabled']
 					}`}
 				>
 					<img src={iconDownload} alt="Image" />
 				</a>
-				<button type="button" className={styles['file-code']}>
+				<button
+					disabled={isLoadingQr}
+					onClick={onGetQrCode}
+					type="button"
+					className={styles['file-code']}
+				>
 					<img src={iconQrCode} alt="Image" />
 				</button>
 				<button type="button" className={styles['file-delete']}>

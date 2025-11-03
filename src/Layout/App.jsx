@@ -9,6 +9,7 @@ function App() {
 				<Outlet />
 			</main>
 			<div id="popup-create-project"></div>
+			<div id="popup-qr"></div>
 		</>
 	)
 }

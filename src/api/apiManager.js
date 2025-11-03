@@ -4,12 +4,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { apiRoutes } from './apiRoutes'
 
-const BASE_URL = 'http://localhost:8080/'
+export const BASE_URL = 'http://localhost:8080/'
 
 export const apiManager = createApi({
 	reducerPath: 'apiManager',
 	baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
-	tagTypes: ['Projects'],
+	tagTypes: ['Projects', 'Files'],
 	endpoints: builder => ({
 		getAllSpecialization: builder.query({
 			query: () => apiRoutes.specialization.getAll,
@@ -62,33 +62,42 @@ export const apiManager = createApi({
 				formData.append('ProjectId', idProject)
 				formData.append('ObjectId', idProject)
 				formData.append('file', file)
-
 				return {
 					url: apiRoutes.projects.addFile,
 					method: 'POST',
 					body: formData,
 				}
 			},
+			invalidatesTags: ['Files'],
 		}),
 		// File
 		getLinkDownloadFile: builder.query({
 			query: idFile => apiRoutes.file.getDownloadLink(idFile),
-			providesTags: (results, error, id) => [{ type: 'Projects', id }],
+			providesTags: (results, error, id) => [{ type: 'Files', id }],
+		}),
+		getQrCode: builder.query({
+			query: idFile => apiRoutes.file.getQrCode(idFile),
 		}),
 	}),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
+
+// getMethods
 export const {
 	useGetAllSpecializationQuery,
 	useGetProjectByIdQuery,
 	useGetAllProjectFilesQuery,
+	useGetAllProjectsQuery,
+	useGetLinkDownloadFileQuery,
+	useGetQrCodeQuery,
+} = apiManager
+
+export const {
 	useRegistrationUserMutation,
 	useLoginUserMutation,
-	useGetAllProjectsQuery,
 	useCreateProjectMutation,
 	useDeleteProjectMutation,
 	useAddProjectFileMutation,
-	useGetLinkDownloadFileQuery,
 } = apiManager

@@ -39,6 +39,7 @@
 .files-actions {
 	flex-shrink: 0;
 	display: flex;
+	align-items: center;
 	column-gap: toRem(15);
 }
 .file-code,

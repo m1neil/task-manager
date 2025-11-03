@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { useAddProjectFileMutation } from '@/api/apiManager'
 import File from '../File/File'
 
-function Files({ idProject, files }) {
+function Files({ idProject, files, setSelectedQr, setIsOpenPopup }) {
 	const fileInput = useRef(null)
 	const [addProjectFile, { isLoading: isSending }] = useAddProjectFileMutation()
 
@@ -30,7 +30,12 @@ function Files({ idProject, files }) {
 			</h2>
 			<div className={styles['files-items']}>
 				{files.map(file => (
-					<File key={file.fileStorageId} {...file} />
+					<File
+						setIsOpenPopup={setIsOpenPopup}
+						setSelectedQr={setSelectedQr}
+						key={file.fileStorageId}
+						{...file}
+					/>
 				))}
 			</div>
 			<button

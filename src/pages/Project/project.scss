@@ -73,3 +73,16 @@
 .project-label {
 	margin-bottom: toRem(30);
 }
+
+.code {
+	padding: toRem(30);
+	border-radius: toRem(8);
+	background-color: #fff;
+}
+.code-qr {
+	max-width: toRem(300);
+	aspect-ratio: 1;
+	object-fit: contain;
+	display: block;
+	margin-inline: auto;
+}

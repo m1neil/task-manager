@@ -19,5 +19,6 @@ export const apiRoutes = {
 	file: {
 		getDownloadLink: idFile =>
 			`api/FileStorages/GetFileDownloadUrl?fileStorageId=${idFile}`,
+		getQrCode: idFile => `api/Qr/GenerateQr?FileId=${idFile}&size=10`,
 	},
 }
