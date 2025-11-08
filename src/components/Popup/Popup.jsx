@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import { bodyUtile } from '@/utils/bodyUtile'
 import styles from './Popup.module.scss'
 
-// TODO: Баг с открытие/закрытием мадалки дергается контент
 function Popup({ selector, children, isOpen, onClose, delay }) {
 	useEffect(() => {
 		if (isOpen) {

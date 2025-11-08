@@ -1,0 +1,61 @@
+.editor {
+	p {
+		border: none;
+	}
+	.task-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 8px;
+		margin: 4px 0;
+		list-style: none;
+	}
+
+	.task-toggle {
+		width: 18px;
+		height: 18px;
+		border: 1px solid #888;
+		border-radius: 4px;
+		background: transparent;
+		cursor: pointer;
+		position: relative;
+		flex-shrink: 0;
+		transition: 0.2s;
+	}
+
+	.task-item.active .task-toggle {
+		background: #25a5da;
+		border-color: #25a5da;
+	}
+
+	.task-item.active .task-toggle::after {
+		content: "✓";
+		position: absolute;
+		top: -1px;
+		left: 4px;
+		color: white;
+		font-size: 13px;
+	}
+
+	.task-text {
+		flex: 1;
+		outline: none;
+	}
+
+	.task-item.active .task-text {
+		text-decoration: line-through;
+		opacity: 0.75;
+	}
+
+	.editor-content {
+		border: 1px solid #ccc;
+		border-radius: 8px;
+		padding: 10px;
+		min-height: 180px;
+		background: #fff;
+		line-height: 1.6;
+	}
+	.ProseMirror-focused {
+		border: none;
+		outline: none;
+	}
+}

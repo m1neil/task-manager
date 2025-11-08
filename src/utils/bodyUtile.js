@@ -36,6 +36,7 @@ export const bodyUtile = {
 		opacity: 0;
 		visibility: hidden;
 		overflow: scroll;
+		scrollbar-width: thin;
 	`
 		document.body.append(element)
 		const widthScroll = element.offsetWidth - element.clientWidth
